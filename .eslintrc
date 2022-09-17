@@ -1,0 +1,13 @@
+{
+  "extends": "airbnb", 
+  "parserOptions": {
+    "requireConfigFile": false,
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "no-console": 0,
+    "linebreak-style": 0
+  }
+}
