@@ -1,4 +1,4 @@
-import db from './db';
+import db from './users-db';
 
 function validateUser() {
   const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
