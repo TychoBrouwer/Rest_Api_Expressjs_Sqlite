@@ -1,10 +1,10 @@
-const express = require('express');
-const signInRouter = require('./routes/users');
+import express, { json } from 'express';
+import signInRouter from './routes/users';
 
 const port = 3000 || process.env.PORT;
 
 const app = express();
-app.use(express.json());
+app.use(json());
 
 app.get('/', (req, res) => {
   res.json({ message: 'alive' });
