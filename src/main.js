@@ -1,5 +1,5 @@
 import express, { json } from 'express';
-import signInRouter from './routes/users';
+import signInRouter from './routes/users.js';
 
 const port = 3000 || process.env.PORT;
 
