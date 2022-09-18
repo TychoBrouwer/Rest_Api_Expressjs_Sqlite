@@ -1,5 +1,5 @@
-import Sqlite from 'better-sqlite3';
-import { resolve } from 'path';
+const Sqlite = require('better-sqlite3');
+const { resolve } = require('path');
 
 const db = new Sqlite(resolve('users.db'), { fileMustExist: true });
 
