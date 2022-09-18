@@ -1,5 +1,5 @@
-const Router = require('express');
-const signIn = require('../services/users');
+import Router from 'express';
+import signIn from '../services/users';
 
 const router = Router();
 
