@@ -28,13 +28,15 @@ function createUser(data) {
     const serverSalt = bcrypt.genSaltSync(10);
     const clientSalt = get(email);
 
+    const passwordHash = bcrypt.hashSync(password, serverSalt);
+
     const query = `
       INSERT INTO login_table
       VALUES ( NULL, ?, ?, ?, ? );
     `;
 
     try {
-      result = db.run(query, [email, password, clientSalt, serverSalt]);
+      result = db.run(query, [email, passwordHash, clientSalt, serverSalt]);
     } catch (error) {
       console.log(error);
 
