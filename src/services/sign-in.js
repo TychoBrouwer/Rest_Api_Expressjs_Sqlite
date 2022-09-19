@@ -8,6 +8,7 @@ function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
   const salt = saltGen.getSalt(false, email);
+  console.log(password, salt);
   const passwordHash = bcrypt.hashSync(password, salt);
 
   const query = 'SELECT * FROM login_table where username=? and password=?';
