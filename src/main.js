@@ -1,4 +1,5 @@
 const express = require('express');
+const helmet = require('helmet');
 
 const signInRouter = require('./routes/sign-in');
 const signUpRouter = require('./routes/sign-up');
@@ -11,6 +12,7 @@ const port = 3000 || process.env.PORT;
 initDatabase();
 
 const app = express();
+app.use(helmet());
 app.use(express.json());
 
 app.get('/', (req, res) => {
