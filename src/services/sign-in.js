@@ -14,7 +14,13 @@ function authUser(data) {
   const queryResult = db.query(query, [email, passwordHash]);
 
   if (!queryResult[0]) {
-    console.log(queryResult);
+    console.log(queryResult, email, password, passwordHash);
+
+    const query2 = 'SELECT * FROM login_table where email=?';
+    const queryResult2 = db.query(query2, [email]);
+
+    console.log(queryResult2);
+
     return false;
   }
 
