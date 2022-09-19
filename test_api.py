@@ -8,4 +8,4 @@ data = {
 
 x = requests.post(url, json = data)
 
-print(x.text)
+print(x)
