@@ -13,8 +13,6 @@ function authUser(data) {
   const query = 'SELECT * FROM login_table where email=? and password=?';
   const queryResult = db.query(query, [email, passwordHash]);
 
-  console.log(queryResult);
-
   if (!queryResult[0]) {
     return false;
   }

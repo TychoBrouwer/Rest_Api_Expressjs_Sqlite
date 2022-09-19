@@ -5,10 +5,9 @@ import requests
 #   'email': 'trgrg@nfegrg.vrs',
 # }
 
-url = 'http://192.168.178.142:3000/sign-in'
+url = 'http://192.168.178.142:3000/temp-salt'
 data = {
   'email': 'trgrg@nfegrg.vrs',
-  'password': 'ffesfsef',
 }
 
 x = requests.post(url, json = data)

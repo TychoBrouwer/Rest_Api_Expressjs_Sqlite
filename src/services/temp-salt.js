@@ -11,6 +11,8 @@ function set(data) {
 
   tempSalts[email] = salt;
 
+  console.log(tempSalts);
+
   return salt;
 }
 

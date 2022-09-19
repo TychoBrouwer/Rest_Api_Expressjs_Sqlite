@@ -1,5 +1,5 @@
 const Router = require('express');
-const newClientSalt = require('../services/new-client-salt');
+const newClientSalt = require('../services/temp-salt');
 
 const router = Router();
 
