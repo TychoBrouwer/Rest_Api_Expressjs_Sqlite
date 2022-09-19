@@ -5,8 +5,6 @@ function validateUser(data) {
 
   // const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
 
-  // console.log(data);
-
   return { data };
 }
 
