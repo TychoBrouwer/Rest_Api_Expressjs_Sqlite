@@ -7,7 +7,7 @@ import requests
 
 url = 'http://192.168.178.142:3000/sign-up'
 data = {
-  'email': 'adadaoffaf@nfrg.vrs',
+  'email': 'adgrsgadaoffaf@nfrg.vrs',
   'password': 'gferwfregfg',
 }
 

@@ -28,8 +28,6 @@ function createUser(data) {
     const serverSalt = bcrypt.genSaltSync(10);
     const clientSalt = get(email);
 
-    console.log(clientSalt);
-
     if (!clientSalt) {
       result = false;
     } else {
@@ -46,6 +44,7 @@ function createUser(data) {
         if (queryResult.changes === 0) {
           result = false;
         } else {
+          console.log(queryResult);
           console.log(`new user sign-up: ${email}`);
         }
       } catch (error) {
