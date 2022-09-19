@@ -9,7 +9,7 @@ function initDatabase() {
       'password' varchar, 
       'client_salt' varchar, 
       'server_salt' varchar, 
-      PRIMARY KEY (user_id),
+      PRIMARY KEY (user_id), 
       UNIQUE(email)
     );`;
 
