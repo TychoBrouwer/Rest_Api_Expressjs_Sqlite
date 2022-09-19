@@ -1,15 +1,20 @@
-const { getSalt, setSalt } = require('../utils/salt-gen');
+const bcrypt = require('bcrypt');
 
 const sanitizeInput = require('../utils/sanitize-input');
+
+const tempSalts = {};
 
 function set(data) {
   const { email } = sanitizeInput(data);
 
-  return setSalt(true, email);
+  const salt = bcrypt.genSaltSync(10);
+  tempSalts[email] = salt;
+
+  return salt;
 }
 
 function get(email) {
-  return getSalt(true, email);
+  return tempSalts[email];
 }
 
 module.exports = {

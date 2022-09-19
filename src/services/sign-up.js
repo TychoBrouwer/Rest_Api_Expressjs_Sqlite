@@ -4,7 +4,7 @@ const db = require('./users-db');
 
 const sanitizeInput = require('../utils/sanitize-input');
 const validateEmail = require('../utils/validate-email');
-const { get } = require('./get-client-salt');
+const { get } = require('./new-client-salt');
 
 function validateCreate(data) {
   const { email } = data;
@@ -34,7 +34,7 @@ function createUser(data) {
     `;
 
     try {
-      result = db.run(query, [password, serverSalt, clientSalt, email]);
+      result = db.run(query, [email, password, clientSalt, serverSalt]);
     } catch (error) {
       console.log(error);
 

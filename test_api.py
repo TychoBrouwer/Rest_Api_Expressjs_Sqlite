@@ -2,21 +2,21 @@ import requests
 
 # url = 'http://192.168.178.142:3000/get-client-salt'
 # data = {
-#   'email': 'trgrg@nfegrg.vrs',
+#   'email': 'tychop@nfrg.vrs',
 # }
-# $2b$10$YupWWGUWPKT4UePVbzA.qO
+# $2b$10$93rWSRGAhbOphFDwCAKCGe
 
-# url = 'http://192.168.178.142:3000/sign-up'
-# data = {
-#   'email': 'trgrg@nfegrg.vrs',
-#   'password': 'gferwfregfg',
-# }
-
-url = 'http://192.168.178.142:3000/sign-in'
+url = 'http://192.168.178.142:3000/sign-up'
 data = {
-  'email': 'trgrg@nfegrg.vrs',
+  'email': 'tychop@nfrg.vrs',
   'password': 'gferwfregfg',
 }
+
+# url = 'http://192.168.178.142:3000/sign-in'
+# data = {
+#   'email': 'tychop@nfrg.vrs',
+#   'password': 'gferwfregfg',
+# }
 
 x = requests.post(url, json = data)
 
