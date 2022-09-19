@@ -14,6 +14,7 @@ function authUser(data) {
   const queryResult = db.query(query, [email, passwordHash]);
 
   if (!queryResult[0]) {
+    console.log(queryResult);
     return false;
   }
 
