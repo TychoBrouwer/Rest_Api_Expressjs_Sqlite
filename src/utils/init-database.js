@@ -16,7 +16,7 @@ function initDatabase() {
       UNIQUE(email)
     );`;
 
-  db.exec(createTable);
+  db.run(createTable);
 }
 
 module.exports = initDatabase;

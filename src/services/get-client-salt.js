@@ -1,14 +1,24 @@
-const getSalt = require('../utils/getSalt');
+const bcrypt = require('bcrypt');
+
+const saltGen = require('../utils/salt-gen');
 const sanitizeInput = require('../utils/sanitize-input');
 
 function get(data) {
   const { email } = sanitizeInput(data);
 
-  const salt = getSalt(true, email);
+  let salt = saltGen.getSalt(true, email);
+
+  if (!salt) {
+    salt = bcrypt.genSaltSync(10);
+
+    saltGen.setSalt('client_salt', salt, email);
+  }
 
   console.log(salt);
 
   return salt;
 }
 
-module.exports = get;
+module.exports = {
+  get,
+};
