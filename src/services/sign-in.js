@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 
 const db = require('./users-db');
 const sanitizeInput = require('../utils/sanitize-input');
-const saltGen = require('../utils/salt-gen');
+const saltGen = require('../utils/salts');
 
 function authUser(data) {
   const { email, password } = sanitizeInput(data);
