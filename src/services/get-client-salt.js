@@ -23,6 +23,8 @@ function set(data) {
 function get(email) {
   const salt = getSalt(true, email);
 
+  console.log(salt);
+
   if (salt) {
     return salt;
   }
