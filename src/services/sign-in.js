@@ -20,6 +20,7 @@ function authUser(data) {
     if (!queryResult[0]) {
       result = false;
     } else {
+      console.log(queryResult[0]);
       console.log(`new user sign-in: ${email}, id: ${queryResult[0].user_id}`);
     }
   } catch (error) {
