@@ -22,7 +22,7 @@ function createUser(data) {
 
   const { email, password } = sanitizedInput;
 
-  let result = false;
+  let result = true;
 
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
@@ -36,7 +36,13 @@ function createUser(data) {
     `;
 
     try {
-      result = db.run(query, [email, passwordHash, clientSalt, serverSalt]);
+      const queryResult = db.run(query, [email, passwordHash, clientSalt, serverSalt]);
+
+      if (queryResult.changes === 0) {
+        result = false;
+      }
+
+      console.log(`new user sign-up: ${email}`);
     } catch (error) {
       result = false;
     }
