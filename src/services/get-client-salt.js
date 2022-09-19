@@ -6,6 +6,8 @@ function get(data) {
 
   const salt = getSalt(true, email);
 
+  console.log(salt);
+
   return salt;
 }
 
