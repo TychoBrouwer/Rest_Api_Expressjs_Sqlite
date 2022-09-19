@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt');
 
-const { default: validateEmail } = require('../utils/validate-email');
-const { default: sanitizeInput } = require('../utils/sanitize-input');
+const validateEmail = require('../utils/validate-email');
+const sanitizeInput = require('../utils/sanitize-input');
 const db = require('./users-db');
 
 // function sanitizeInput(data) {
