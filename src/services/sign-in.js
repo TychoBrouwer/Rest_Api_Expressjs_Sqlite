@@ -7,7 +7,7 @@ const saltGen = require('../utils/salt-gen');
 function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
-  const salt = saltGen.getSalt(false, email);
+  const salt = saltGen.getSalt(email);
   const passwordHash = bcrypt.hashSync(password, salt);
 
   const query = 'SELECT * FROM login_table where email=? and password=?';
