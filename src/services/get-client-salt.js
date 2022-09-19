@@ -6,6 +6,10 @@ function get(data) {
 
   const salt = saltGen.getSalt(true, email);
 
+  if (!salt) {
+    return false;
+  }
+
   return salt;
 }
 
