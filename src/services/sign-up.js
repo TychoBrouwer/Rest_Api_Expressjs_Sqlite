@@ -21,6 +21,8 @@ function createUser(data) {
 
   const { email, password } = sanitizedInput;
 
+  let result = false;
+
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
 
@@ -30,10 +32,14 @@ function createUser(data) {
       WHERE email = ?
     `;
 
-    db.run(query, [password, serverSalt, email]);
+    try {
+      result = db.run(query, [password, serverSalt, email]);
+    } catch (error) {
+      return false;
+    }
   }
 
-  return { };
+  return { result };
 }
 
 module.exports = {
