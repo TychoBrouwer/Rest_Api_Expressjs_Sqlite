@@ -10,11 +10,11 @@ function get(data) {
 
   console.log(salt);
 
-  if (!salt) {
-    salt = bcrypt.genSaltSync(10);
+  // if (salt) {
+  salt = bcrypt.genSaltSync(10);
 
-    saltGen.setSalt('client_salt', salt, email);
-  }
+  saltGen.setSalt('client_salt', salt, email);
+  // }
 
   console.log(salt);
 
