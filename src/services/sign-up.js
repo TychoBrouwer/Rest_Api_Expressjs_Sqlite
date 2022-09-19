@@ -36,6 +36,8 @@ function createUser(data) {
     try {
       result = db.run(query, [password, serverSalt, clientSalt, email]);
     } catch (error) {
+      console.log(error);
+
       return false;
     }
   }
