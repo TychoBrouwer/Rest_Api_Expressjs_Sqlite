@@ -1,7 +1,6 @@
 const db = require('../services/users-db');
 
 function getSalt(clientSalt, email) {
-
   console.log(`email:::: ${email}`);
 
   let value = 'server_salt';

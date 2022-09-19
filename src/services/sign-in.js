@@ -7,6 +7,7 @@ const salts = require('../utils/salts');
 function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
+  console.log(`eeeemail: ${email}`);
   console.log(email, salts.getSalt(email));
 
   const serverSalt = salts.getSalt(email);
