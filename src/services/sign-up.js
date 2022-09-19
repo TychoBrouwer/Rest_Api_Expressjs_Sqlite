@@ -28,6 +28,8 @@ function createUser(data) {
     const serverSalt = bcrypt.genSaltSync(10);
     const clientSalt = get(email);
 
+    console.log(clientSalt);
+
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
     const query = `
