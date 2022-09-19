@@ -8,9 +8,9 @@ function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
   console.log(`eeeemail: ${email}`);
-  console.log(email, salts.getSalt(email));
+  console.log(email, salts.getSalt(false, email));
 
-  const serverSalt = salts.getSalt(email);
+  const serverSalt = salts.getSalt(false, email);
 
   console.log(email, serverSalt);
 
