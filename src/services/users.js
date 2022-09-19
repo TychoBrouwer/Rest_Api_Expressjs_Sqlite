@@ -1,4 +1,4 @@
-const db = require('./users-db');
+const db = require('./users-db').default;
 
 function validateUser() {
   const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
