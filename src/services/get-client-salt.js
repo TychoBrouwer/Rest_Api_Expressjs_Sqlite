@@ -8,6 +8,8 @@ function get(data) {
 
   let salt = saltGen.getSalt(true, email);
 
+  console.log(salt);
+
   if (!salt) {
     salt = bcrypt.genSaltSync(10);
 
