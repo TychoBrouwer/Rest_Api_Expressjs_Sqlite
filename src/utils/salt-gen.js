@@ -10,6 +10,8 @@ function getSalt(clientSalt, email) {
   const query = `SELECT ${value} FROM login_table WHERE email = ?`;
   const salt = db.query(query, email);
 
+  console.log(salt);
+
   return salt;
 }
 
@@ -24,9 +26,11 @@ function setSalt(clientSalt, salt, email) {
     INSERT INTO login_table
     (email = ?, ${value} = ?)`;
 
-  db.run(query, [email, salt]);
+  const result = db.run(query, [email, salt]);
 
-  return salt;
+  console.log(result);
+
+  return result;
 }
 
 module.exports = {
