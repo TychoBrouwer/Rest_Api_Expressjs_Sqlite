@@ -4,7 +4,7 @@ const sanitizeInput = require('../utils/sanitize-input');
 function get(data) {
   const { email } = sanitizeInput(data);
 
-  const salt = saltGen.getSalt(true, email)[0];
+  const salt = saltGen.getSalt(true, email);
 
   return salt;
 }
