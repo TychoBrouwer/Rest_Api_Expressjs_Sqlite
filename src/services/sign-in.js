@@ -11,7 +11,7 @@ function authUser(data) {
   const passwordHash = bcrypt.hashSync(password, salt);
 
   const query = 'SELECT * FROM login_table where username=? and password=?';
-  const queryResult = db.prepare(query).get(email, passwordHash);
+  const queryResult = db.get(query, [email, passwordHash]);
 
   console.log(queryResult);
 

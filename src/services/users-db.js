@@ -11,7 +11,17 @@ function run(sql, params) {
   return db.prepare(sql).run(params);
 }
 
+function get(sql, params) {
+  return db.prepare(sql).get(params);
+}
+
+function exec(sql) {
+  return db.exec(sql);
+}
+
 module.exports = {
   query,
   run,
+  get,
+  exec,
 };
