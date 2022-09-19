@@ -1,5 +1,5 @@
 const express = require('express');
-const signInRouter = require('./routes/users.js');
+const signInRouter = require('./routes/users');
 
 const port = 3000 || process.env.PORT;
 
