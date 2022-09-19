@@ -1,9 +1,6 @@
-const Sqlite = require('better-sqlite3');
-const { resolve } = require('path');
+const db = require('../services/users-db');
 
 function initDatabase() {
-  const db = new Sqlite(resolve('users.db'), { fileMustExist: true });
-
   const createTable = `
     CREATE TABLE IF NOT EXISTS 
     login_table (
