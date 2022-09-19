@@ -31,8 +31,8 @@ function createUser(data) {
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
     const query = `
-      INSERT INTO login_table
-      VALUES ( NULL, ?, ?, ?, ? );
+      INSERT INTO login_table (email, password, client_salt, server_salt)
+      VALUES ( ?, ?, ?, ? );
     `;
 
     try {
@@ -40,9 +40,9 @@ function createUser(data) {
 
       if (queryResult.changes === 0) {
         result = false;
+      } else {
+        console.log(`new user sign-up: ${email}`);
       }
-
-      console.log(`new user sign-up: ${email}`);
     } catch (error) {
       result = false;
     }
