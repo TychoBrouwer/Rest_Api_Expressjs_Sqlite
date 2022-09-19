@@ -1,4 +1,4 @@
-const db = require('../services/users-db');
+const db = require('./users-db');
 
 function getSalt(clientSalt, email) {
   let value = 'server_salt';

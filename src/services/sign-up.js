@@ -1,6 +1,6 @@
 const bcrypt = require('bcrypt');
 
-const db = require('./users-db');
+const db = require('../utils/users-db');
 
 const sanitizeInput = require('../utils/sanitize-input');
 const validateEmail = require('../utils/validate-email');
@@ -44,8 +44,7 @@ function createUser(data) {
         if (queryResult.changes === 0) {
           result = false;
         } else {
-          console.log(queryResult);
-          console.log(`new user sign-up: ${email}`);
+          console.log(`new user sign-up: ${email}, user_id: ${queryResult.lastInsertRowid}`);
         }
       } catch (error) {
         console.log(error);
