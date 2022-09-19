@@ -24,7 +24,9 @@ function authUser(data) {
     return false;
   }
 
-  return queryResult;
+  return {
+    email: queryResult[0],
+  };
 }
 
 module.exports = {
