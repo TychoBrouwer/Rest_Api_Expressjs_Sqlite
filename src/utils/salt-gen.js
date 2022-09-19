@@ -30,10 +30,6 @@ function getSalt(clientSalt, email) {
 
   if (saltQuery) {
     salt = saltQuery.client_salt;
-    // } else {
-    //   salt = bcrypt.genSaltSync(10);
-
-    //   setSalt('client_salt', salt, email);
   }
 
   return salt;
