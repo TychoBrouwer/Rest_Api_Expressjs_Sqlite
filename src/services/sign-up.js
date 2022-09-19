@@ -29,8 +29,8 @@ function createUser(data) {
     const clientSalt = tempSalt.get(email);
 
     const query = `
-      INSERT login_table
-      SET password = ?, server_salt = ?, clientSalt = ?, email = ?
+      INSERT INTO login_table
+      VALUES password = ?, server_salt = ?, clientSalt = ?, email = ?
     `;
 
     try {
