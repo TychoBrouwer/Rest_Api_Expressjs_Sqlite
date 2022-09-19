@@ -8,7 +8,6 @@ function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
   const salt = saltGen.getSalt(false, email);
-  console.log(password, salt);
   const passwordHash = bcrypt.hashSync(password, salt);
 
   const query = 'SELECT * FROM login_table where email=? and password=?';
@@ -16,7 +15,11 @@ function authUser(data) {
 
   console.log(queryResult);
 
-  return { queryResult };
+  if (!queryResult[0]) {
+    return false;
+  }
+
+  return queryResult;
 }
 
 module.exports = {
