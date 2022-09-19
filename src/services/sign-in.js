@@ -25,7 +25,7 @@ function authUser(data) {
   }
 
   return {
-    email: queryResult[0].email,
+    email,
     result,
   };
 }
