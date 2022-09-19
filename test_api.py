@@ -2,7 +2,7 @@ import requests
 
 url = 'http://192.168.178.142:3000/get-client-salt'
 data = {
-  'email': 'trfasgrg@ngrg.vrs',
+  'email': 'trgrg@ngrg.vrs',
 }
 
 x = requests.post(url, json = data)
