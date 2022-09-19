@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
 const db = require('./users-db');
 const sanitizeInput = require('../utils/sanitize-input');
