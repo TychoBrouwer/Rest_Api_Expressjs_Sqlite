@@ -16,11 +16,11 @@ function authUser(data) {
 
     const query = 'SELECT * FROM login_table where email=? and password=?';
     queryResult = db.query(query, [email, passwordHash]);
-  } catch (error) {
-    result = false;
-  }
 
-  if (!queryResult[0]) {
+    if (!queryResult[0]) {
+      result = false;
+    }
+  } catch (error) {
     result = false;
   }
 
