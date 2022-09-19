@@ -44,6 +44,8 @@ function createUser(data) {
         console.log(`new user sign-up: ${email}`);
       }
     } catch (error) {
+      console.log(error);
+
       result = false;
     }
   }
