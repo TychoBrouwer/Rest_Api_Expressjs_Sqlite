@@ -5,13 +5,13 @@ function initDatabase() {
   const db = new Sqlite(resolve('users.db'), { fileMustExist: true });
 
   const createTable = `
-    CREATE TABLE IF NOT EXISTS 
+    CREATE TABLE  
     login_table (
       'user_id' int NOT NULL, 
       'email' varchar NOT NULL, 
       'password' varchar, 
-      'clientSalt' varchar, 
-      'serverSalt' varchar, 
+      'client_salt' varchar, 
+      'server_salt' varchar, 
       PRIMARY KEY (user_id),
       UNIQUE(email)
     );`;
