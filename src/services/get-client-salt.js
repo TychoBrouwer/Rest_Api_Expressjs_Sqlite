@@ -6,17 +6,21 @@ const sanitizeInput = require('../utils/sanitize-input');
 function get(data) {
   const { email } = sanitizeInput(data);
 
-  let salt = saltGen.getSalt(true, email);
+  const saltQuery = saltGen.getSalt(true, email)[0];
 
-  if (!salt[0]) {
+  let salt;
+
+  if (salt) {
+    salt = saltQuery.client_salt;
+  } else {
     salt = bcrypt.genSaltSync(10);
 
     saltGen.setSalt('client_salt', salt, email);
   }
 
-  console.log(salt[0].client_salt);
+  console.log(salt);
 
-  return salt[0].client_salt;
+  return salt;
 }
 
 module.exports = {
