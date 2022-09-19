@@ -7,7 +7,7 @@ function validateUser(data) {
 
   // console.log(data);
 
-  return {};
+  return { data };
 }
 
 function validateCreate(userObj) {
