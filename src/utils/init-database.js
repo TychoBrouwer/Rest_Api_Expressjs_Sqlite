@@ -4,7 +4,7 @@ function initDatabase() {
   const loginTable = `
     CREATE TABLE IF NOT EXISTS 
     login_table (
-      'user_id' int NOT NULL PRIMARY KEY AUTOINCREMENT, 
+      'user_id' int PRIMARY KEY AUTOINCREMENT, 
       'email' varchar NOT NULL, 
       'password' varchar, 
       'client_salt' varchar, 
