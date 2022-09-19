@@ -23,8 +23,8 @@ function setSalt(clientSalt, salt, email) {
   }
 
   const query = `
-    INSERT INTO login_table
-    (email = :email, ${value} = :salt)`;
+    INSERT INTO login_table (email, client_salt)
+    VALUES (?, ?)`;
 
   const result = db.run(query, [email, salt]);
 
