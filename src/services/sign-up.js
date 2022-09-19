@@ -4,6 +4,7 @@ const db = require('./users-db');
 
 const sanitizeInput = require('../utils/sanitize-input');
 const validateEmail = require('../utils/validate-email');
+const { getSalt } = require('../utils/salt-gen');
 
 function validateCreate(data) {
   const { email } = data;
@@ -25,15 +26,15 @@ function createUser(data) {
 
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
+    const clientSalt = getSalt(true, email);
 
     const query = `
-      UPDATE login_table
-      SET password = ?, server_salt = ?
-      WHERE email = ?
+      INSERT login_table
+      SET password = ?, server_salt = ?, clientSalt = ?, email = ?
     `;
 
     try {
-      result = db.run(query, [password, serverSalt, email]);
+      result = db.run(query, [password, serverSalt, clientSalt, email]);
     } catch (error) {
       return false;
     }

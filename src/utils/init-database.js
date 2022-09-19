@@ -1,7 +1,7 @@
 const db = require('../services/users-db');
 
 function initDatabase() {
-  const createTable = `
+  const loginTable = `
     CREATE TABLE IF NOT EXISTS 
     login_table (
       'user_id' int, 
@@ -13,7 +13,7 @@ function initDatabase() {
       UNIQUE(email)
     );`;
 
-  db.run(createTable, []);
+  db.run(loginTable, []);
 }
 
 module.exports = initDatabase;
