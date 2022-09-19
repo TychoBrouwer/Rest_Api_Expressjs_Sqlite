@@ -12,14 +12,14 @@ import requests
 
 # url = 'http://192.168.178.142:3000/sign-up'
 # data = {
-#   'email': 'trgrg@nfegrg.vrs',
-#   'password': 'ughsgjvdjfvjdf',
+#   'email': 'trgrg@nfegrsdsdffdffsdg.vrs',
+#   'password': 'ughsgjvdjfvjfdsfsdfdsdf',
 # }
 
 url = 'http://192.168.178.142:3000/sign-in'
 data = {
-  'email': 'trgrg@nfegrg.vrs',
-  'password': 'ughsgjvdjfvjdf',
+  'email': 'trgrg@nfegrsdsdffdffsdg.vrs',
+  'password': 'ughsgjvdjfvjfdsfsdfdsdf',
 }
 
 x = requests.post(url, json = data)
