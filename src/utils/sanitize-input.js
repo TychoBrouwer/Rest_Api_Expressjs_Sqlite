@@ -1,13 +1,11 @@
 const sanitizeInput = (data) => {
-  let { email, password } = data;
+  const returnObj = {};
 
-  email = email.trim();
-  password = password.trim();
+  Object.keys(data).forEach((key) => {
+    returnObj[key] = data[key].trim();
+  });
 
-  return {
-    email,
-    password,
-  };
+  return returnObj;
 };
 
 module.exports = sanitizeInput;
