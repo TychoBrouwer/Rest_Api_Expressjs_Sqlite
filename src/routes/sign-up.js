@@ -1,13 +1,13 @@
 const Router = require('express');
-const signIn = require('../services/users');
+const signUp = require('../services/sign-up');
 
 const router = Router();
 
 router.post('/', (req, res, next) => {
   try {
-    res.json(signIn.authUser(req.body));
+    res.json(signUp.createUser(req.body));
   } catch (err) {
-    console.error('Error while getting login ', err.message);
+    console.error('Error while creating user ', err.message);
     next(err);
   }
 });

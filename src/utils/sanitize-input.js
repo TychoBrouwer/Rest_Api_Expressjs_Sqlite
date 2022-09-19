@@ -1,8 +1,8 @@
 const sanitizeInput = (data) => {
   let { email, password } = data;
 
-  email = email.trim().escape();
-  password = password.trim().escape();
+  email = email.trim();
+  password = password.trim();
 
   return {
     email,
