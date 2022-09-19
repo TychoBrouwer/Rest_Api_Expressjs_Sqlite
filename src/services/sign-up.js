@@ -29,8 +29,8 @@ function createUser(data) {
     const clientSalt = get(email);
 
     const query = `
-      INSERT login_table
-      SET password = ?, server_salt = ?, client_salt = ?, email = ?
+      INSERT INTO login_table
+      VALUES ( ?, ?, ?, ? );
     `;
 
     try {
