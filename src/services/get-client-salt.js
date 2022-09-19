@@ -8,9 +8,9 @@ function get(data) {
 
   let salt = saltGen.getSalt(true, email);
 
-  console.log(salt[0]);
+  console.log(salt[0].client_salt);
 
-  if (salt[0]) {
+  if (!salt[0].client_salt) {
     salt = bcrypt.genSaltSync(10);
 
     saltGen.setSalt('client_salt', salt, email);
