@@ -1,9 +1,11 @@
-const db = require('./users-db').default;
+const db = require('./users-db');
 
-function validateUser() {
-  const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
-
+function validateUser(data) {
   console.log(data);
+
+  // const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
+
+  // console.log(data);
 
   return {};
 }
