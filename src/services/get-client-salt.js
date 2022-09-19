@@ -16,9 +16,9 @@ function get(data) {
     saltGen.setSalt('client_salt', salt, email);
   }
 
-  console.log(salt);
+  console.log(salt[0].client_salt);
 
-  return salt;
+  return salt[0].client_salt;
 }
 
 module.exports = {
