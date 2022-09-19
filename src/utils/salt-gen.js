@@ -8,7 +8,7 @@ function getSalt(clientSalt, email) {
   }
 
   const query = `SELECT ${value} FROM login_table WHERE email = ?`;
-  const salt = db.all(query, email);
+  const salt = db.query(query, email);
 
   return salt;
 }
