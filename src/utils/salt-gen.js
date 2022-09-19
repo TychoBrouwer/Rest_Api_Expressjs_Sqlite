@@ -10,7 +10,7 @@ function getSalt(clientSalt, email) {
   const query = `SELECT ${value} FROM login_table WHERE email = ?`;
   const salt = db.query(query, email);
 
-  console.log(salt);
+  console.log(`from database: ${salt}`);
 
   return salt;
 }
@@ -28,7 +28,7 @@ function setSalt(clientSalt, salt, email) {
 
   const result = db.run(query, [email, salt]);
 
-  console.log(result);
+  console.log(`database result: ${result}`);
 
   return result;
 }
