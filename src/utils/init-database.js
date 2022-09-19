@@ -13,7 +13,7 @@ function initDatabase() {
       UNIQUE(email)
     );`;
 
-  db.run(createTable);
+  db.run(createTable, []);
 }
 
 module.exports = initDatabase;
