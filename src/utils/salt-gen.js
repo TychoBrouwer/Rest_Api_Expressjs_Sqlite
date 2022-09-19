@@ -8,11 +8,9 @@ function getSalt(clientSalt, email) {
   }
 
   const query = `SELECT ${value} FROM login_table WHERE email = ?`;
-  const salt = db.query(query, email);
+  const result = db.query(query, email);
 
-  console.log(`from database: ${salt}`);
-
-  return salt;
+  return result;
 }
 
 function setSalt(clientSalt, salt, email) {
@@ -23,12 +21,10 @@ function setSalt(clientSalt, salt, email) {
   }
 
   const query = `
-    INSERT INTO login_table (user_id, email, client_salt)
+    INSERT INTO login_table (user_id, email, ${value})
     VALUES (NULL, ?, ?)`;
 
   const result = db.run(query, [email, salt]);
-
-  console.log(`database result: ${result}`);
 
   return result;
 }
