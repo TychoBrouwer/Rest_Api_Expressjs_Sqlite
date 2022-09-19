@@ -24,7 +24,7 @@ function setSalt(clientSalt, salt, email) {
 
   const query = `
     INSERT INTO login_table
-    (email = ?, ${value} = ?)`;
+    (email = :email, ${value} = :salt)`;
 
   const result = db.run(query, [email, salt]);
 
