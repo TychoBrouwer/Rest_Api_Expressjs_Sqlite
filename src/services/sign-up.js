@@ -30,11 +30,11 @@ function createUser(data) {
 
     const query = `
       INSERT INTO login_table
-      VALUES (password = ?, server_salt = ?, clientSalt = ?, email = ?);
+      VALUES (email = ?, password = ?, clientSalt = ?, server_salt = ?);
     `;
 
     try {
-      result = db.run(query, [password, serverSalt, clientSalt, email]);
+      result = db.run(query, [email, password, clientSalt, serverSalt]);
     } catch (error) {
       console.log(error);
 
