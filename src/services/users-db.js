@@ -11,7 +11,7 @@ function run(sql, params) {
   return db.prepare(sql).run(params);
 }
 
-export default {
+module.exports = {
   query,
   run,
 };

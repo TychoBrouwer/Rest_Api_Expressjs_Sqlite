@@ -42,7 +42,7 @@ function createUser(userObj) {
   return { message };
 }
 
-export default {
+module.exports = {
   validateUser,
   createUser,
 };
