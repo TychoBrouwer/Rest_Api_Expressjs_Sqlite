@@ -10,7 +10,7 @@ function get(data) {
 
   let salt;
 
-  if (salt) {
+  if (saltQuery) {
     salt = saltQuery.client_salt;
   } else {
     salt = bcrypt.genSaltSync(10);
