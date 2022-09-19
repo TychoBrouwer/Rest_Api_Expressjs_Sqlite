@@ -28,6 +28,8 @@ function getSalt(clientSalt, email) {
 
   let salt;
 
+  console.log(saltQuery);
+
   if (saltQuery) {
     salt = saltQuery.client_salt;
   }
