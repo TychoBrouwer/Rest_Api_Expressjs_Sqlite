@@ -1,18 +1,9 @@
-const { getSalt, setSalt } = require('../utils/salts');
-
-const sanitizeInput = require('../utils/sanitize-input');
-
-function set(data) {
-  const { email } = sanitizeInput(data);
-
-  return setSalt(true, email);
-}
+const { getSalt } = require('../utils/salts');
 
 function get(email) {
   return getSalt(true, email);
 }
 
 module.exports = {
-  set,
   get,
 };
