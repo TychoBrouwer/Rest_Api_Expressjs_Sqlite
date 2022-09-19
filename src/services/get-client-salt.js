@@ -1,4 +1,4 @@
-const { getSalt, setSalt } = require('../utils/salt-gen');
+const { getSalt, setSalt } = require('../utils/salts');
 
 const sanitizeInput = require('../utils/sanitize-input');
 
