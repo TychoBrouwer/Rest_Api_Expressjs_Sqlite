@@ -2,14 +2,17 @@ const bcrypt = require('bcrypt');
 
 const db = require('./users-db');
 const sanitizeInput = require('../utils/sanitize-input');
-const saltGen = require('../utils/salts');
+const salts = require('../utils/salts');
 
 function authUser(data) {
   const { email, password } = sanitizeInput(data);
 
-  const serverSalt = saltGen.getSalt(email);
+  console.log(email, salts.getSalt(email));
+
+  const serverSalt = salts.getSalt(email);
 
   console.log(email, serverSalt);
+
   const passwordHash = bcrypt.hashSync(password, serverSalt);
 
   const query = 'SELECT * FROM login_table where email=? and password=?';
