@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/', (req, res, next) => {
   try {
-    res.json(signIn.validateUser(req.body));
+    res.json(signIn.authUser(req.body));
   } catch (err) {
     console.error('Error while getting login ', err.message);
     next(err);

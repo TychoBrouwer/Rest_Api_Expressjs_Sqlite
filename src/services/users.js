@@ -1,11 +1,39 @@
+const bcrypt = require('bcrypt');
+
+const { default: validateEmail } = require('../utils/validate-email');
+const { default: sanitizeInput } = require('../utils/sanitize-input');
 const db = require('./users-db');
 
-function validateUser(data) {
-  console.log(data);
+// function sanitizeInput(data) {
+//   let { email, password } = data;
+
+//   email = email.trim().escape();
+//   password = password.trim().escape();
+
+//   return {
+//     email,
+//     password,
+//   };
+// }
+
+function authUser(data) {
+  const { email, password } = sanitizeInput(data);
+
+  let result = {};
+
+  if (!validateEmail(email)) {
+    result = {
+      valid: false,
+      apiToken: false,
+      message: 'No valid email was entered.',
+    };
+  }
+
+  console.log(email, password);
 
   // const data = db.query('SELECT * FROM quote LIMIT ?,?', []);
 
-  return { data };
+  return { result };
 }
 
 function validateCreate(userObj) {
@@ -43,6 +71,6 @@ function createUser(userObj) {
 }
 
 module.exports = {
-  validateUser,
+  authUser,
   createUser,
 };
