@@ -10,4 +10,4 @@ const sanitizeInput = (data) => {
   };
 };
 
-export default sanitizeInput;
+module.exports = sanitizeInput;
