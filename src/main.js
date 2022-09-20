@@ -5,11 +5,13 @@ const initDatabase = require('./utils/init-database');
 
 const port = 3000 || process.env.PORT;
 
-initDatabase();
+const app = express();
+module.exports = app;
 
-const app = module.exports = express();
 app.use(helmet());
 app.use(express.json());
+
+initDatabase();
 
 const signInRouter = require('./routes/sign-in');
 const signUpRouter = require('./routes/sign-up');
