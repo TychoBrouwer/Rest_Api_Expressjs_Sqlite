@@ -1,10 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
 
-const signInRouter = require('./routes/sign-in');
-const signUpRouter = require('./routes/sign-up');
-const getClientSalt = require('./routes/get-client-salt');
-const newClientSalt = require('./routes/new-client-salt');
 const initDatabase = require('./utils/init-database');
 
 const port = 3000 || process.env.PORT;
@@ -12,9 +8,13 @@ const port = 3000 || process.env.PORT;
 initDatabase();
 
 const app = module.exports = express();
-
 app.use(helmet());
 app.use(express.json());
+
+const signInRouter = require('./routes/sign-in');
+const signUpRouter = require('./routes/sign-up');
+const getClientSalt = require('./routes/get-client-salt');
+const newClientSalt = require('./routes/new-client-salt');
 
 app.get('/', (req, res) => {
   res.json({ message: 'alive' });
