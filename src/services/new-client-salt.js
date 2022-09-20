@@ -7,6 +7,8 @@ function set(req) {
   const { email } = sanitizeInput(req.body);
 
   const salt = bcrypt.genSaltSync(10);
+
+  console.log(app);
   app.locals[email] = salt;
 
   console.log(app.locals);
