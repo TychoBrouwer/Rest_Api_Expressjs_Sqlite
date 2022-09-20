@@ -1,24 +1,23 @@
 const bcrypt = require('bcrypt');
+const { application } = require('express');
 
 const sanitizeInput = require('../utils/sanitize-input');
 
-const tempSalts = {};
-
-function set(data) {
+function set(data, req) {
   const { email } = sanitizeInput(data);
 
   const salt = bcrypt.genSaltSync(10);
-  tempSalts[email] = salt;
+  req.app.locals[email] = salt;
 
   console.log('testse', email, salt);
 
   return salt;
 }
 
-function get(email) {
-  console.log(tempSalts);
+function get(email, req) {
+  console.log(application.locals[email]);
 
-  return tempSalts[email];
+  return req.app.locals[email];
 }
 
 module.exports = {
