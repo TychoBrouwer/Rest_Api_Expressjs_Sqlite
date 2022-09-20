@@ -6,17 +6,17 @@ function set(req) {
   const { email } = sanitizeInput(req.body);
 
   const salt = bcrypt.genSaltSync(10);
-  req[email] = salt;
+  req.app.locals.set(email, salt);
 
-  console.log(req[email]);
+  console.log(req.app.locals);
 
   return salt;
 }
 
 function get(req, email) {
-  console.log(req[email]);
+  console.log(req.app.locals);
 
-  return req[email];
+  return req.app.locals.get(email);
 }
 
 module.exports = {
