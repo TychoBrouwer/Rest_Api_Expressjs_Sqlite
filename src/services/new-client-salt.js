@@ -3,8 +3,8 @@ const { application } = require('express');
 
 const sanitizeInput = require('../utils/sanitize-input');
 
-function set(data, req) {
-  const { email } = sanitizeInput(data);
+function set(req) {
+  const { email } = sanitizeInput(req.body);
 
   const salt = bcrypt.genSaltSync(10);
   req.app.locals[email] = salt;

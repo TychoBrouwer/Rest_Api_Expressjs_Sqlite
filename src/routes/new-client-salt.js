@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/', (req, res, next) => {
   try {
-    res.json(newClientSalt.set(req.body));
+    res.json(newClientSalt.set(req));
   } catch (err) {
     console.error('Error while getting login ', err.message);
     next(err);

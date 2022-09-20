@@ -16,8 +16,8 @@ function validateCreate(data) {
   return valid;
 }
 
-function createUser(data) {
-  const sanitizedInput = sanitizeInput(data);
+function createUser(req) {
+  const sanitizedInput = sanitizeInput(req.body);
   const valid = validateCreate(sanitizedInput);
 
   const { email, password } = sanitizedInput;
@@ -26,7 +26,7 @@ function createUser(data) {
 
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
-    const clientSalt = newCLientSalt.get(email);
+    const clientSalt = newCLientSalt.get(req, email);
 
     if (!clientSalt) {
       result = false;
