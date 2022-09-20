@@ -8,13 +8,13 @@ function set(req) {
   const salt = bcrypt.genSaltSync(10);
   req.app.locals[email] = salt;
 
-  console.log('testse', email, salt);
+  console.log(req.app.locals);
 
   return salt;
 }
 
 function get(req, email) {
-  console.log(req);
+  console.log(req.app.locals);
 
   return req.app.locals[email];
 }
