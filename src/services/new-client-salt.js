@@ -10,10 +10,15 @@ function set(data) {
   const salt = bcrypt.genSaltSync(10);
   tempSalts[email] = salt;
 
+  console.log(email, salt);
+  console.log(tempSalts);
+
   return salt;
 }
 
 function get(email) {
+  console.log(tempSalts);
+
   return tempSalts[email];
 }
 
