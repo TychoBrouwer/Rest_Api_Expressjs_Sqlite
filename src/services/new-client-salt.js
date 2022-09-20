@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt');
-const { application } = require('express');
 
 const sanitizeInput = require('../utils/sanitize-input');
 
@@ -15,7 +14,7 @@ function set(req) {
 }
 
 function get(email, req) {
-  console.log(application.locals[email]);
+  console.log(req.app.locals[email]);
 
   return req.app.locals[email];
 }
