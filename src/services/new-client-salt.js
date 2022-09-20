@@ -14,7 +14,7 @@ function set(req) {
 }
 
 function get(email, req) {
-  console.log(req.app.locals[email]);
+  console.log(req.app);
 
   return req.app.locals[email];
 }
