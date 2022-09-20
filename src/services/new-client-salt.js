@@ -13,7 +13,7 @@ function set(req) {
   return salt;
 }
 
-function get(email, req) {
+function get(req, email) {
   console.log(req);
 
   return req.app.locals[email];
