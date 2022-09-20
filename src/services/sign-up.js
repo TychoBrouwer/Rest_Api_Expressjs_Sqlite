@@ -26,7 +26,6 @@ function createUser(req) {
 
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
-    console.log('testtse');
     const clientSalt = newCLientSalt.get(req, email);
 
     if (!clientSalt) {
