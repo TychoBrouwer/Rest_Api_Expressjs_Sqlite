@@ -10,8 +10,6 @@ function get(data) {
     return salt;
   }
 
-  console.log(email, salt);
-
   return false;
 }
 

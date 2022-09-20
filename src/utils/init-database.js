@@ -12,6 +12,8 @@ function initDatabase() {
     );`;
 
   db.run(loginTable, []);
+
+  console.log('database initiated');
 }
 
 module.exports = initDatabase;
