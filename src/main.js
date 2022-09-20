@@ -11,8 +11,7 @@ const port = 3000 || process.env.PORT;
 
 initDatabase();
 
-const app = express();
-module.exports = app;
+const app = module.exports = express();
 
 app.use(helmet());
 app.use(express.json());
