@@ -27,3 +27,5 @@ app.use('/new-client-salt', newClientSalt);
 app.listen(port, () => {
   console.log(`Api app listening on port ${port}`);
 });
+
+module.exports = app;
