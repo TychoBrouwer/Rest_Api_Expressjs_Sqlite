@@ -12,6 +12,8 @@ const port = 3000 || process.env.PORT;
 initDatabase();
 
 const app = express();
+module.exports = app;
+
 app.use(helmet());
 app.use(express.json());
 
@@ -27,5 +29,3 @@ app.use('/new-client-salt', newClientSalt);
 app.listen(port, () => {
   console.log(`Api app listening on port ${port}`);
 });
-
-module.exports = app;
