@@ -11,6 +11,7 @@ module.exports = app;
 
 app.use(helmet());
 app.use(express.json());
+app.disable('x-powered-by');
 
 initDatabase();
 
@@ -27,6 +28,17 @@ app.use('/sign-in', signInRouter);
 app.use('/sign-up', signUpRouter);
 app.use('/get-client-salt', getClientSalt);
 app.use('/new-client-salt', newClientSalt);
+
+app.use((req, res) => {
+  res.status(404).send("Sorry can't find that!");
+});
+
+// custom error handler
+app.use((err, req, res) => {
+  console.error(err.stack);
+
+  res.status(500).send('Something broke!');
+});
 
 app.listen(port, () => {
   console.log(`Api app listening on port ${port}`);

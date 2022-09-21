@@ -3,12 +3,11 @@ const signIn = require('../services/sign-in');
 
 const router = Router();
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   try {
     res.json(signIn.authUser(req.body));
   } catch (err) {
-    console.error('Error while getting login ', err.message);
-    next(err);
+    res.status(500).end();
   }
 });
 

@@ -16,11 +16,7 @@
     "helmet": "^6.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/node": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
     "eslint": "^8.23.1",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "nodemon": "^2.0.20"
+    "eslint-config-airbnb-base": "^15.0.0"
   }
 }
