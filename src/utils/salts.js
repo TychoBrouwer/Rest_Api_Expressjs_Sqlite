@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 const db = require('./users-db');
 
 function getSalt(clientSalt, email) {
@@ -10,13 +12,11 @@ function getSalt(clientSalt, email) {
   const query = `SELECT ${value} FROM login_table WHERE email = ?`;
   const saltQuery = db.query(query, email)[0];
 
-  let salt;
-
   if (saltQuery) {
-    salt = saltQuery[value];
+    return saltQuery[value];
   }
 
-  return salt;
+  return bcrypt.genSaltSync(10);
 }
 
 module.exports = {
