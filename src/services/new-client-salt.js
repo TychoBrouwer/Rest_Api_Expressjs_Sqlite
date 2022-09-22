@@ -10,15 +10,10 @@ function set(data) {
   const salt = bcrypt.genSaltSync(10);
   app.locals[email] = salt;
 
-  console.log(app.locals);
-  console.log(`client salt: ${app.locals[email]}`);
-
   return salt;
 }
 
 function get(email) {
-  console.log(`client salt: ${app.locals[email]}`);
-
   return app.locals[email];
 }
 
