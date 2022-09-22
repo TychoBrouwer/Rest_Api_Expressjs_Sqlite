@@ -6,11 +6,7 @@ function get(data) {
 
   const salt = getSalt(true, email);
 
-  if (salt) {
-    return salt;
-  }
-
-  return false;
+  return salt;
 }
 
 module.exports = {
