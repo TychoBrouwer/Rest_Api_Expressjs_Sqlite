@@ -1,5 +1,6 @@
-git_update.bat
+git_push_main.bat
 users.db
+api-secret.txt
 
 # Logs
 logs

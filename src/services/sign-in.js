@@ -5,30 +5,34 @@ const sanitizeInput = require('../utils/sanitize-input');
 const salts = require('../utils/salts');
 
 function authUser(data) {
-  const { email, password } = sanitizeInput(data);
+  const { email, userID, password } = sanitizeInput(data);
 
-  let result = true;
   let queryResult;
 
   try {
-    const serverSalt = salts.getSalt(false, email);
+    const serverSalt = salts.getSalt(false, email || userID);
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
-    const query = 'SELECT * FROM login_table where email=? and password=?';
-    queryResult = db.query(query, [email, passwordHash]);
+    const query = 'SELECT * FROM users WHERE (Email = ? OR UserID = ?) AND Password = ?';
+    queryResult = db.query(query, [email, userID, passwordHash]);
 
     if (!queryResult[0]) {
-      result = false;
-    } else {
-      console.log(`new user sign-in: ${email}, user_id: ${queryResult[0].user_id}`);
+      return { email, userID, result: false };
     }
+
+    // console.log(`new user sign-in: ${email}, user_id: ${queryResult[0].UserID}`);
   } catch (error) {
-    result = false;
+    return { email, userID, result: false };
   }
 
   return {
-    email,
-    result,
+    email: queryResult[0].Email,
+    userID: queryResult[0].UserID,
+    groupID: queryResult[0].GroupID,
+    firstName: queryResult[0].FirstName,
+    lastName: queryResult[0].LastName,
+    inventory: queryResult[0].Inventory,
+    result: true,
   };
 }
 

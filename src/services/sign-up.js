@@ -5,7 +5,8 @@ const app = require('../main');
 
 const sanitizeInput = require('../utils/sanitize-input');
 const validateEmail = require('../utils/validate-email');
-const newCLientSalt = require('./new-client-salt');
+const cLientSalt = require('./client-salt');
+const { createToken } = require('../utils/sign-in-tokens');
 
 function validateCreate(data) {
   const { email } = data;
@@ -23,43 +24,42 @@ function createUser(data) {
 
   const { email, password } = sanitizedInput;
 
-  let result = true;
-
   if (valid) {
     const serverSalt = bcrypt.genSaltSync(10);
-    const clientSalt = newCLientSalt.get(email);
+    const clientSalt = cLientSalt.getTemp(email);
 
     if (!clientSalt) {
-      result = false;
-    } else {
-      const passwordHash = bcrypt.hashSync(password, serverSalt);
+      return { email, result: false };
+    }
 
-      const query = `
-        INSERT INTO login_table (email, password, client_salt, server_salt)
-        VALUES ( ?, ?, ?, ? );
-      `;
+    const passwordHash = bcrypt.hashSync(password, serverSalt);
 
-      delete app.locals[email];
+    const query = `
+      INSERT INTO users (Email, Password, ClientSalt, ServerSalt, Inventory)
+      VALUES ( ?, ?, ?, ?, ? );
+    `;
 
-      try {
-        const queryResult = db.run(query, [email, passwordHash, clientSalt, serverSalt]);
+    delete app.locals[email];
 
-        if (queryResult.changes === 0) {
-          result = false;
-        } else {
-          console.log(`new user sign-up: ${email}, user_id: ${queryResult.lastInsertRowid}`);
-        }
-      } catch (error) {
-        console.log(error);
+    try {
+      const queryResult = db.run(query, [email, passwordHash, clientSalt, serverSalt, '[]']);
 
-        result = false;
+      if (queryResult.changes === 0) {
+        return { email, result: false };
       }
+
+      console.log(`new user sign-up: ${email}, user_id: ${queryResult.lastInsertRowid}`);
+      createToken(queryResult.lastInsertRowid);
+    } catch (error) {
+      console.log(error);
+
+      return { email, result: false };
     }
   }
 
   return {
     email,
-    result,
+    result: true,
   };
 }
 

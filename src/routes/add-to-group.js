@@ -1,11 +1,11 @@
 const Router = require('express');
-const clientSalt = require('../services/client-salt');
+const groups = require('../services/groups');
 
 const router = Router();
 
 router.post('/', (req, res) => {
   try {
-    res.json(clientSalt.setTemp(req.body));
+    res.json(groups.addToGroup(req.body));
   } catch (err) {
     res.status(500).end();
   }

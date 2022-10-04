@@ -2,7 +2,11 @@ const sanitizeInput = (data) => {
   const returnObj = {};
 
   Object.keys(data).forEach((key) => {
-    returnObj[key] = data[key].trim().toLowerCase();
+    if (typeof data[key] === 'string') {
+      returnObj[key] = data[key].trim().toLowerCase();
+    } else {
+      returnObj[key] = data[key];
+    }
   });
 
   return returnObj;

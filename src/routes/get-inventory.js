@@ -1,11 +1,11 @@
 const Router = require('express');
-const clientSalt = require('../services/client-salt');
+const inventory = require('../services/inventory');
 
 const router = Router();
 
 router.post('/', (req, res) => {
   try {
-    res.json(clientSalt.setTemp(req.body));
+    res.json(inventory.getInventory(req.body));
   } catch (err) {
     res.status(500).end();
   }
