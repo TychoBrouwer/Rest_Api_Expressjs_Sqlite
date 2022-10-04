@@ -15,8 +15,12 @@ function getInventory(data) {
     let queryResult;
 
     if (groupID) {
-      // get the groups data
-      // if this fails return user inventory
+      const query = 'SELECT Inventory FROM groups WHERE GroupID = ?';
+      queryResult = db.query(query, [groupID]);
+
+      if (!queryResult[0]) {
+        return { userID, result: false };
+      }
     } else {
       const query = 'SELECT Inventory FROM users WHERE UserID = ?';
       queryResult = db.query(query, [userID]);

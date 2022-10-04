@@ -6,7 +6,6 @@ const app = require('../main');
 const sanitizeInput = require('../utils/sanitize-input');
 const validateEmail = require('../utils/validate-email');
 const cLientSalt = require('./client-salt');
-const { createToken } = require('../utils/sign-in-tokens');
 
 function validateCreate(data) {
   const { email } = data;
@@ -49,7 +48,6 @@ function createUser(data) {
       }
 
       console.log(`new user sign-up: ${email}, user_id: ${queryResult.lastInsertRowid}`);
-      createToken(queryResult.lastInsertRowid);
     } catch (error) {
       console.log(error);
 
