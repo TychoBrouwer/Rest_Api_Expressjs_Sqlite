@@ -19,24 +19,24 @@ function getInventory(data) {
       queryResult = db.query(query, [groupID]);
 
       if (!queryResult[0]) {
-        return { userID, result: false };
+        return { userID, groupID, result: false };
       }
     } else {
       const query = 'SELECT Inventory FROM users WHERE UserID = ?';
       queryResult = db.query(query, [userID]);
 
       if (!queryResult[0]) {
-        return { userID, result: false };
+        return { userID, groupID, result: false };
       }
     }
 
     return {
       userID,
-      groupID: groupID || null,
+      groupID,
       inventory: queryResult[0].Inventory,
     };
   } catch (error) {
-    return { userID, result: false };
+    return { userID, groupID, result: false };
   }
 }
 

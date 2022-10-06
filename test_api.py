@@ -42,15 +42,14 @@ data7 = {
   'groupID': 1,
 }
 
-
 # x1 = requests.post(url1, json = data1)
 # print(x1.text)
 
 # x2 = requests.post(url2, json = data2)
 # print(x2.text)
 
-# x3 = requests.post(url3, json = data3)
-# print(x3.text)
+x3 = requests.post(url3, json = data3)
+print(x3.text)
 
 # x4 = requests.post(url4, json = data4)
 # print(x4.text)

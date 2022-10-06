@@ -13,11 +13,13 @@ function getSalt(clientSalt, identifier) {
 
   const saltQuery = db.query(query, [identifier, identifier])[0];
 
+  console.log(saltQuery);
+
   if (saltQuery) {
     return saltQuery[value];
   }
 
-  return bcrypt.genSaltSync(10);
+  return { ClientSalt: bcrypt.genSaltSync(10) };
 }
 
 module.exports = {
