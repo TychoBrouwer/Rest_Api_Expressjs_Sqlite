@@ -1,10 +1,12 @@
+const lz = require('lz-string');
+
 const db = require('../utils/users-db');
 const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
 
 function getGroups(userID) {
   try {
-    const query = 'SELECT * FROM users_groups where UserID=?';
+    const query = 'SELECT * FROM users_groups where UserID = ?';
     const queryResult = db.query(query, [userID]);
 
     if (queryResult.length === 0) {
@@ -17,6 +19,21 @@ function getGroups(userID) {
   }
 }
 
+function checkUserGroup(userID, groupID) {
+  try {
+    const query = 'SELECT * FROM users_groups where UserID = ? AND GroupID = ?';
+    const queryResult = db.query(query, [userID, groupID]);
+
+    if (queryResult.length === 0) {
+      return { userID, groupID, result: false };
+    }
+
+    return { userID, groupID, result: true };
+  } catch (error) {
+    return { userID, groupID, result: false };
+  }
+}
+
 function groupExists(groupID) {
   try {
     const query = `
@@ -25,8 +42,6 @@ function groupExists(groupID) {
     `;
 
     const queryResult = db.run(query, [groupID]);
-
-    console.log(queryResult);
 
     if (!queryResult[0]) {
       return false;
@@ -80,7 +95,7 @@ function createGroup(data) {
   `;
 
   try {
-    const queryResult = db.run(query, [userID, '[]']);
+    const queryResult = db.run(query, [userID, lz.compress('[]')]);
 
     if (queryResult.changes === 0) {
       return { groupID: null, result: false };
@@ -98,6 +113,7 @@ function createGroup(data) {
 
 module.exports = {
   getGroups,
+  checkUserGroup,
   groupExists,
   addToGroup,
   createGroup,

@@ -29,15 +29,28 @@ data5 = {
   # 'groupID': 1,
 }
 
-url6 = 'http://192.168.178.56:3000/create-group'
+url6 = 'http://192.168.178.56:3000/add-item'
 data6 = {
+  'userID': 1,
+  'password': 'test',
+  'groupID': 1,
+  'itemData': {
+    'name': 'pears',
+    'date': '1665080399656',
+    'quantity': 3,
+    'type': 'units',
+  }
+}
+
+url7 = 'http://192.168.178.56:3000/create-group'
+data7 = {
   'userID': 1,
   'password': 'test',
 }
 
-url7 = 'http://192.168.178.56:3000/add-to-group'
-data7 = {
-  'userID': 2,
+url8 = 'http://192.168.178.56:3000/add-to-group'
+data8 = {
+  'userID': 1,
   'password': 'test',
   'groupID': 1,
 }
@@ -48,8 +61,8 @@ data7 = {
 # x2 = requests.post(url2, json = data2)
 # print(x2.text)
 
-x3 = requests.post(url3, json = data3)
-print(x3.text)
+# x3 = requests.post(url3, json = data3)
+# print(x3.text)
 
 # x4 = requests.post(url4, json = data4)
 # print(x4.text)
@@ -63,3 +76,5 @@ print(x3.text)
 # x7 = requests.post(url7, json = data7)
 # print(x7.text)
 
+# x8 = requests.post(url8, json = data8)
+# print(x8.text)

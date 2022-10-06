@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt');
+const lz = require('lz-string');
 
 const db = require('../utils/users-db');
 const app = require('../main');
@@ -41,7 +42,9 @@ function createUser(data) {
     delete app.locals[email];
 
     try {
-      const queryResult = db.run(query, [email, passwordHash, clientSalt, serverSalt, '[]']);
+      const queryResult = db.run(query, [
+        email, passwordHash, clientSalt, serverSalt, lz.compress('[]'),
+      ]);
 
       if (queryResult.changes === 0) {
         return { email, result: false };

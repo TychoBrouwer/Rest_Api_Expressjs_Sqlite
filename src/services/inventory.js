@@ -1,5 +1,8 @@
+const lz = require('lz-string');
+
 const sanitizeInput = require('../utils/sanitize-input');
 const db = require('../utils/users-db');
+const { checkUserGroup } = require('./groups');
 const { authUser } = require('./sign-in');
 
 function getInventory(data) {
@@ -15,6 +18,14 @@ function getInventory(data) {
     let queryResult;
 
     if (groupID) {
+      const checkGroup = checkUserGroup(userID, groupID);
+
+      if (!checkGroup.result) {
+        return {
+          userID, groupID, result: false,
+        };
+      }
+
       const query = 'SELECT Inventory FROM groups WHERE GroupID = ?';
       queryResult = db.query(query, [groupID]);
 
@@ -33,13 +44,79 @@ function getInventory(data) {
     return {
       userID,
       groupID,
-      inventory: queryResult[0].Inventory,
+      inventory: (JSON.parse(lz.decompress(queryResult[0].Inventory))),
+      result: true,
     };
   } catch (error) {
     return { userID, groupID, result: false };
   }
 }
 
+function addToInventory(data) {
+  const {
+    userID, groupID, password, itemData,
+  } = sanitizeInput(data);
+
+  const currentData = getInventory({ userID, password, groupID });
+
+  try {
+    let queryResult;
+    let newInventory = [];
+    let query;
+
+    if (groupID) {
+      query = `
+        UPDATE groups
+        SET Inventory = ?
+        WHERE userID = ?
+      `;
+
+      const checkGroup = checkUserGroup(userID, groupID);
+
+      if (!checkGroup.result) {
+        return {
+          userID, groupID, result: false,
+        };
+      }
+    } else {
+      query = `
+        UPDATE users
+        SET Inventory = ?
+        WHERE userID = ?
+      `;
+    }
+
+    if (currentData.result && currentData.inventory) {
+      newInventory = currentData.inventory;
+      newInventory.push(itemData);
+
+      queryResult = db.run(query, [lz.compress(JSON.stringify(newInventory)), userID]);
+
+      if (queryResult.changes === 0) {
+        return {
+          userID, groupID, itemData, result: false,
+        };
+      }
+    } else {
+      return {
+        userID, groupID, itemData, result: false,
+      };
+    }
+
+    return {
+      userID,
+      groupID,
+      newInventory,
+      result: true,
+    };
+  } catch (error) {
+    return {
+      userID, groupID, itemData, result: false,
+    };
+  }
+}
+
 module.exports = {
   getInventory,
+  addToInventory,
 };
