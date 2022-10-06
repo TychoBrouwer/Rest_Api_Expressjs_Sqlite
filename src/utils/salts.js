@@ -17,7 +17,9 @@ function getSalt(clientSalt, identifier) {
     return saltQuery[value];
   }
 
-  return { ClientSalt: bcrypt.genSaltSync(10) };
+  const dummySalt = bcrypt.genSaltSync(10);
+
+  return dummySalt;
 }
 
 module.exports = {

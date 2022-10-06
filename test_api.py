@@ -11,7 +11,7 @@ data2 = {
   'password': 'test',
 }
 
-url3 = 'http://192.168.178.142:3000/get-client-salt'
+url3 = 'http://192.168.178.56:3000/get-client-salt'
 data3 = {
   'email': '123343@gmail.com',
 }
