@@ -13,12 +13,12 @@ data2 = {
 
 url3 = 'http://131.155.232.150:3000/get-client-salt'
 data3 = {
-  'email': '123343@gmail.com',
+  'email': '1233f4322@gmail.com',
 }
 
 url4 = 'http://131.155.232.150:3000/sign-in'
 data4 = {
-  'email': '123343@gmail.com',
+  'email': '1233f4322@gmail.com',
   'password': 'test',
 }
 
@@ -70,14 +70,14 @@ data9 = {
 # x3 = requests.post(url3, json = data3)
 # print(x3.text)
 
-# x4 = requests.post(url4, json = data4)
-# print(x4.text)
+x4 = requests.post(url4, json = data4)
+print(x4.text)
 
 # x5 = requests.post(url5, json = data5)
 # print(x5.text)
 
-x6 = requests.post(url6, json = data6)
-print(x6.text)
+# x6 = requests.post(url6, json = data6)
+# print(x6.text)
 
 # x7 = requests.post(url7, json = data7)
 # print(x7.text)
