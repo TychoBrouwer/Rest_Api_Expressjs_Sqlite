@@ -2,12 +2,12 @@ import requests
 
 url1 = 'http://131.155.232.150:3000/new-client-salt'
 data1 = {
-  'email': '1233f43@gmail.com',
+  'email': '1233f4322@gmail.com',
 }
 
 url2 = 'http://131.155.232.150:3000/sign-up'
 data2 = {
-  'email': '1233f43@gmail.com',
+  'email': '1233f4322@gmail.com',
   'password': 'test',
 }
 
@@ -31,9 +31,9 @@ data5 = {
 
 url6 = 'http://131.155.232.150:3000/add-item'
 data6 = {
-  'userID': 1,
+  'userID': 2,
   'password': 'test',
-  'groupID': 1,
+  'groupID': 4,
   'itemData': {
     'name': 'pears',
     'date': '1665080399656',
@@ -44,7 +44,7 @@ data6 = {
 
 url7 = 'http://131.155.232.150:3000/create-group'
 data7 = {
-  'userID': 1,
+  'userID': 2,
   'password': 'test',
 }
 
@@ -76,8 +76,8 @@ data9 = {
 # x5 = requests.post(url5, json = data5)
 # print(x5.text)
 
-# x6 = requests.post(url6, json = data6)
-# print(x6.text)
+x6 = requests.post(url6, json = data6)
+print(x6.text)
 
 # x7 = requests.post(url7, json = data7)
 # print(x7.text)

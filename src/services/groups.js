@@ -19,7 +19,7 @@ function getGroups({ userID, password }) {
       return { userID, result: false };
     }
 
-    return queryResult;
+    return { data: queryResult, result: true };
   } catch (error) {
     return { userID, result: false };
   }
