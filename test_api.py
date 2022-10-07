@@ -31,9 +31,9 @@ data5 = {
 
 url6 = 'http://131.155.232.150:3000/add-item'
 data6 = {
-  'userID': 2,
+  'userID': 1,
   'password': 'test',
-  'groupID': 4,
+  'groupID': 1,
   'itemData': {
     'name': 'pears',
     'date': '1665080399656',
@@ -44,7 +44,7 @@ data6 = {
 
 url7 = 'http://131.155.232.150:3000/create-group'
 data7 = {
-  'userID': 2,
+  'userID': 1,
   'password': 'test',
 }
 

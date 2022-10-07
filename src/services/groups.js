@@ -101,7 +101,7 @@ function createGroup(data) {
   `;
 
   try {
-    const queryResult = db.run(query, [userID, lz.compress('[]')]);
+    const queryResult = db.run(query, [userID, lz.compressToUTF16('[]')]);
 
     if (queryResult.changes === 0) {
       return { groupID: null, result: false };
