@@ -1,3 +1,4 @@
+const lz = require('lz-string');
 const bcrypt = require('bcrypt');
 
 const db = require('../utils/users-db');
@@ -31,7 +32,7 @@ function authUser(data) {
     groupID: queryResult[0].GroupID,
     firstName: queryResult[0].FirstName,
     lastName: queryResult[0].LastName,
-    inventory: queryResult[0].Inventory,
+    inventory: lz.decompress(queryResult[0].Inventory),
     result: true,
   };
 }
