@@ -43,7 +43,7 @@ function createUser(data) {
 
     try {
       const queryResult = db.run(query, [
-        email, passwordHash, clientSalt, serverSalt, lz.compress('[]'),
+        email, passwordHash, clientSalt, serverSalt, lz.compressToUTF16('[]'),
       ]);
 
       if (queryResult.changes === 0) {

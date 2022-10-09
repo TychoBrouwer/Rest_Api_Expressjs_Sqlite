@@ -4,7 +4,13 @@ const db = require('../utils/users-db');
 const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
 
-function getGroups(userID) {
+function getGroups({ userID, password }) {
+  const authResult = authUser({ userID, password });
+
+  if (!authResult.result) {
+    return { userID, result: false };
+  }
+
   try {
     const query = 'SELECT * FROM users_groups where UserID = ?';
     const queryResult = db.query(query, [userID]);
@@ -13,7 +19,7 @@ function getGroups(userID) {
       return { userID, result: false };
     }
 
-    return queryResult;
+    return { data: queryResult, result: true };
   } catch (error) {
     return { userID, result: false };
   }
@@ -34,24 +40,24 @@ function checkUserGroup(userID, groupID) {
   }
 }
 
-function groupExists(groupID) {
-  try {
-    const query = `
-      SELECT EXISTS(SELECT 1 FROM groups WHERE GroupID = ?)
-      VALUES ( ? );
-    `;
+// function groupExists(groupID) {
+//   try {
+//     const query = `
+//       SELECT EXISTS(SELECT 1 FROM groups WHERE GroupID = ?)
+//       VALUES ( ? );
+//     `;
 
-    const queryResult = db.run(query, [groupID]);
+//     const queryResult = db.run(query, [groupID]);
 
-    if (!queryResult[0]) {
-      return false;
-    }
+//     if (!queryResult[0]) {
+//       return false;
+//     }
 
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
+//     return true;
+//   } catch (error) {
+//     return false;
+//   }
+// }
 
 function addToGroup(data) {
   const { userID, groupID, password } = sanitizeInput(data);
@@ -95,7 +101,7 @@ function createGroup(data) {
   `;
 
   try {
-    const queryResult = db.run(query, [userID, lz.compress('[]')]);
+    const queryResult = db.run(query, [userID, lz.compressToUTF16('[]')]);
 
     if (queryResult.changes === 0) {
       return { groupID: null, result: false };
@@ -114,7 +120,7 @@ function createGroup(data) {
 module.exports = {
   getGroups,
   checkUserGroup,
-  groupExists,
+  // groupExists,
   addToGroup,
   createGroup,
 };

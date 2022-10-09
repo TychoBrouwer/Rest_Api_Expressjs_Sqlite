@@ -44,7 +44,7 @@ function getInventory(data) {
     return {
       userID,
       groupID,
-      inventory: (JSON.parse(lz.decompress(queryResult[0].Inventory))),
+      inventory: (JSON.parse(lz.decompressFromUTF16(queryResult[0].Inventory))),
       result: true,
     };
   } catch (error) {
@@ -90,7 +90,7 @@ function addToInventory(data) {
       newInventory = currentData.inventory;
       newInventory.push(itemData);
 
-      queryResult = db.run(query, [lz.compress(JSON.stringify(newInventory)), userID]);
+      queryResult = db.run(query, [lz.compressToUTF16(JSON.stringify(newInventory)), userID]);
 
       if (queryResult.changes === 0) {
         return {

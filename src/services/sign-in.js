@@ -29,7 +29,6 @@ function authUser(data) {
   return {
     email: queryResult[0].Email,
     userID: queryResult[0].UserID,
-    groupID: queryResult[0].GroupID,
     firstName: queryResult[0].FirstName,
     lastName: queryResult[0].LastName,
     inventory: lz.decompress(queryResult[0].Inventory),

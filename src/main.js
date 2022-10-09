@@ -38,6 +38,7 @@ const newClientSalt = require('./routes/new-client-salt');
 const addItem = require('./routes/add-item');
 const getInventory = require('./routes/get-inventory');
 const addToGroup = require('./routes/add-to-group');
+const getGroups = require('./routes/get-groups');
 const createGroup = require('./routes/create-group');
 
 app.get('/', (req, res) => {
@@ -51,6 +52,7 @@ app.use('/new-client-salt', newClientSalt);
 app.use('/add-item', addItem);
 app.use('/get-inventory', getInventory);
 app.use('/add-to-group', addToGroup);
+app.use('/get-groups', getGroups);
 app.use('/create-group', createGroup);
 
 app.use((req, res) => {
