@@ -31,7 +31,7 @@ function authUser(data) {
     userID: queryResult[0].UserID,
     firstName: queryResult[0].FirstName,
     lastName: queryResult[0].LastName,
-    inventory: lz.decompress(queryResult[0].Inventory),
+    inventory: lz.decompressFromUTF16(queryResult[0].Inventory),
     result: true,
   };
 }
