@@ -44,7 +44,7 @@ function getInventory(data) {
     return {
       userID,
       groupID,
-      inventory: (JSON.parse(lz.decompressFromUTF16(queryResult[0].Inventory))),
+      inventory: JSON.parse(lz.decompressFromUTF16(queryResult[0].Inventory)),
       result: true,
     };
   } catch (error) {
