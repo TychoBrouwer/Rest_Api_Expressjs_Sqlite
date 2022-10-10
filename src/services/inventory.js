@@ -181,8 +181,8 @@ function removeFromInventory(data) {
     }
 
     if (currentData.result && currentData.inventory) {
-      newInventory = currentData.inventory;
-      newInventory.filter((item) => item.itemID !== itemID);
+      const currentInventory = currentData.inventory;
+      newInventory = currentInventory.filter((item) => item.itemID !== itemID);
 
       queryResult = db.run(
         query,
