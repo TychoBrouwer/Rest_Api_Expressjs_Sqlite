@@ -59,6 +59,12 @@ function addToInventory(data) {
 
   const currentData = getInventory({ userID, password, groupID });
 
+  const authResult = authUser({ userID, password });
+
+  if (!authResult.result) {
+    return { userID, result: false };
+  }
+
   try {
     let queryResult;
     let newInventory = [];
