@@ -32,22 +32,17 @@ function updateUserDetails(data) {
 
     for (let i = 0; i < valuesToUpdate.length; i += 1) {
       query += `${valuesToUpdate[i]} = ?${i !== valuesToUpdate.length - 1 ? ',' : ''} `;
-      queryValues.push(toUpdate[valuesToUpdate[i]]);
+      queryValues.push(toUpdate[valuesToUpdate[i]].toLowerCase());
     }
 
     query += `
       WHERE userID = ?`;
     queryValues.push(userID);
 
-    console.log(query);
-    console.log(queryValues);
-
     const queryResult = db.run(
       query,
       queryValues,
     );
-
-    console.log(queryResult);
 
     if (queryResult.changes === 0) {
       return {
@@ -60,7 +55,6 @@ function updateUserDetails(data) {
       result: true,
     };
   } catch (error) {
-    console.log(error);
     return {
       userID, result: false,
     };

@@ -16,15 +16,15 @@ data3 = {
   'email': 'test@gmail.com',
 }
 
-url4 = 'http://192.168.178.56:3000/sign-in'
+url4 = 'http://192.168.178.142:3000/sign-in'
 data4 = {
-  'email': 'test@gmail.com',
+  'email': 'Wer@gmail.com',
   'password': '123',
 }
 
 url5 = 'http://192.168.178.56:3000/get-inventory'
 data5 = {
-  'userID': 2,
+  'userID': 1,
   'password': '123',
   # 'groupID': 1,
 }
@@ -61,12 +61,12 @@ data9 = {
   'password': '123',
 }
 
-url10 = 'http://192.168.178.56:3000/update-user'
+url10 = 'http://192.168.178.142:3000/update-user'
 data10 = {
-  'userID': 2,
+  'userID': 1,
   'password': '123',
   'toUpdate': {
-    'FirstName': 'heldddlo',
+    'FirstName': 'tycho',
     # 'LastName': 'test12332',
     # 'Email': 'test@gmail.com',
     # 'Password': '123',
