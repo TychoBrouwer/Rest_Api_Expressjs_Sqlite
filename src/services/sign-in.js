@@ -14,10 +14,6 @@ function authUser(data) {
     const serverSalt = salts.getSalt(false, email || userID);
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
-    console.log(`serversalt: ${serverSalt}`);
-    console.log(`unhashed: ${password}`);
-    console.log(`hashed: ${passwordHash}`);
-
     const query = 'SELECT * FROM users WHERE (Email = ? OR UserID = ?) AND Password = ?';
     queryResult = db.query(query, [email, userID, passwordHash]);
 
