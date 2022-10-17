@@ -41,6 +41,7 @@ const getInventory = require('./routes/get-inventory');
 const addToGroup = require('./routes/add-to-group');
 const getGroups = require('./routes/get-groups');
 const createGroup = require('./routes/create-group');
+const updateUser = require('./routes/update-user-details');
 
 app.get('/', (req, res) => {
   res.json({ message: 'alive' });
@@ -56,6 +57,7 @@ app.use('/get-inventory', getInventory);
 app.use('/add-to-group', addToGroup);
 app.use('/get-groups', getGroups);
 app.use('/create-group', createGroup);
+app.use('/update-user', updateUser);
 
 app.use((req, res) => {
   res.status(404).send("sorry can't find that!");
