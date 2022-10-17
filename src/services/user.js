@@ -16,13 +16,21 @@ function updateUserDetails(data) {
     return { userID, result: false };
   }
 
+  console.log(`id: ${userID}`);
+  console.log(`unhashed: ${toUpdate.Password}`);
+
   if (toUpdate.Password) {
     const serverSalt = salts.getSalt(false, userID);
     toUpdate.Password = bcrypt.hashSync(toUpdate.Password, serverSalt);
+    console.log(`serversalt: ${serverSalt}`);
   }
+
+  console.log(`hashed: ${toUpdate.Password}`);
 
   try {
     const valuesToUpdate = Object.keys(toUpdate);
+
+    console.log(`value to update: ${valuesToUpdate}`);
 
     let query = `
       UPDATE users
