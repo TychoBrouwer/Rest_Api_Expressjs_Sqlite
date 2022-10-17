@@ -3,7 +3,7 @@ const sanitizeInput = (data) => {
 
   Object.keys(data).forEach((key) => {
     if (typeof data[key] === 'string') {
-      console.log(data[key]);
+      console.log(key);
       if (data[key].includes('assword')) {
         returnObj[key] = data[key].trim();
       } else {
