@@ -89,7 +89,7 @@ function addToGroup(data) {
     return { userID, groupID, result: false };
   }
 
-  const usersGroup = getUsers({ userID, groupID });
+  const usersGroup = getUsers({ userID, password, groupID });
 
   console.log(usersGroup);
   console.log(usersGroup.length);
