@@ -4,7 +4,9 @@ const db = require('../utils/users-db');
 const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
 
-function getGroups({ userID, password }) {
+function getGroups(data) {
+  const { userID, password } = sanitizeInput(data);
+
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
@@ -21,7 +23,28 @@ function getGroups({ userID, password }) {
   }
 }
 
-function checkUserGroup({ userID, groupID }) {
+function getUsers(data) {
+  const { userID, password, groupID } = sanitizeInput(data);
+
+  const authResult = authUser({ userID, password });
+
+  if (!authResult.result) {
+    return { userID, result: false };
+  }
+
+  try {
+    const query = 'SELECT * FROM users_groups where GroupID = ?';
+    const queryResult = db.query(query, [groupID]);
+
+    return { data: queryResult, result: true };
+  } catch (error) {
+    return { userID, result: false };
+  }
+}
+
+function checkUserGroup(data) {
+  const { userID, groupID } = sanitizeInput(data);
+
   try {
     const query = 'SELECT * FROM users_groups where UserID = ? AND GroupID = ?';
     const queryResult = db.query(query, [userID, groupID]);
@@ -109,6 +132,8 @@ function createGroup(data) {
       return { groupID: null, result: false };
     }
 
+    console.log(queryResult);
+
     addToGroup({ userID, groupID: queryResult.lastInsertRowid, password });
 
     return { groupID: queryResult.lastInsertRowid, result: true };
@@ -121,6 +146,7 @@ function createGroup(data) {
 
 module.exports = {
   getGroups,
+  getUsers,
   checkUserGroup,
   // groupExists,
   addToGroup,
