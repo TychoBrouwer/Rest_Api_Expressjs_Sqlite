@@ -21,12 +21,8 @@ function updateUserDetails(data) {
     toUpdate.Password = bcrypt.hashSync(toUpdate.Password, serverSalt);
   }
 
-  console.log(`hashed: ${toUpdate.Password}`);
-
   try {
     const valuesToUpdate = Object.keys(toUpdate);
-
-    console.log(`value to update: ${valuesToUpdate}`);
 
     let query = `
       UPDATE users
@@ -69,11 +65,7 @@ function getIdFromEmail(email) {
   try {
     const query = 'SELECT UserID FROM users where Email = ?';
 
-    console.log(query, email);
-
     const queryResult = db.query(query, [email]);
-
-    console.log(queryResult);
 
     if (!queryResult[0]) {
       return false;

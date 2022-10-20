@@ -98,18 +98,11 @@ function addToGroup(data) {
 
   const usersGroup = usersGroupResult.data.map((groupData) => groupData.UserID);
 
-  console.log(userID);
-  console.log(usersGroup);
-  console.log(usersGroup.includes(userID));
-  console.log(!usersGroup.includes(userID));
-
   if (usersGroup.length !== 0 && !usersGroup.includes(userID)) {
     return { userID, groupID, result: false };
   }
 
   const idToAdd = getIdFromEmail(emailToAdd);
-
-  console.log(emailToAdd, idToAdd);
 
   if (!idToAdd) {
     return {
@@ -161,8 +154,6 @@ function createGroup(data) {
     if (queryResult.changes === 0) {
       return { groupID: null, result: false };
     }
-
-    console.log(queryResult);
 
     addToGroup({ userID, groupID: queryResult.lastInsertRowid, password });
 
