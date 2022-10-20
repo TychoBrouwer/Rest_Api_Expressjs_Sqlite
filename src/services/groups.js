@@ -96,7 +96,7 @@ function addToGroup(data) {
     return { userID, groupID, result: false };
   }
 
-  const usersGroup = usersGroupResult.data;
+  const usersGroup = usersGroupResult.data.map((groupData) => groupData.UserID);
 
   console.log(userID);
   console.log(usersGroup);
