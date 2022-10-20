@@ -15,6 +15,8 @@ function getGroups({ userID, password }) {
     const query = 'SELECT * FROM users_groups where UserID = ?';
     const queryResult = db.query(query, [userID]);
 
+    console.log(queryResult);
+
     if (queryResult.length === 0) {
       return { userID, result: false };
     }
@@ -25,7 +27,7 @@ function getGroups({ userID, password }) {
   }
 }
 
-function checkUserGroup(userID, groupID) {
+function checkUserGroup({ userID, groupID }) {
   try {
     const query = 'SELECT * FROM users_groups where UserID = ? AND GroupID = ?';
     const queryResult = db.query(query, [userID, groupID]);
@@ -65,6 +67,12 @@ function addToGroup(data) {
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
+    return { userID, groupID, result: false };
+  }
+
+  const groupCheck = checkUserGroup({ userID, groupID });
+
+  if (!groupCheck.result) {
     return { userID, groupID, result: false };
   }
 
