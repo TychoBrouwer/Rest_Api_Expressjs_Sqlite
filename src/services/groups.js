@@ -104,6 +104,8 @@ function addToGroup(data) {
 
   const idToAdd = getIdFromEmail(emailToAdd);
 
+  console.log(emailToAdd, idToAdd);
+
   if (!idToAdd) {
     return {
       userID, emailToAdd, groupID, result: false,

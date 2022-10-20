@@ -71,7 +71,9 @@ function getIdFromEmail(email) {
 
     const queryResult = db.query(query, [email]);
 
-    if (queryResult.changes === 0) {
+    console.log(queryResult);
+
+    if (!queryResult[0]) {
       return false;
     }
 
