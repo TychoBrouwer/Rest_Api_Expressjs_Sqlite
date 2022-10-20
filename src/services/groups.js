@@ -79,7 +79,9 @@ function checkUserGroup(data) {
 // }
 
 function addToGroup(data) {
-  const { userID, groupID, password } = sanitizeInput(data);
+  const {
+    userID, password, groupID, toAddId,
+  } = sanitizeInput(data);
 
   const authResult = authUser({ userID, password });
 
@@ -99,16 +101,22 @@ function addToGroup(data) {
       VALUES ( ?, ? );
     `;
 
-    const queryResult = db.run(query, [userID, groupID]);
+    const queryResult = db.run(query, [toAddId, groupID]);
 
     if (queryResult.changes === 0) {
-      return { userID, groupID, result: false };
+      return {
+        userID, toAddId, groupID, result: false,
+      };
     }
   } catch (error) {
-    return { userID, groupID, result: false };
+    return {
+      userID, toAddId, groupID, result: false,
+    };
   }
 
-  return { userID, groupID, result: true };
+  return {
+    userID, toAddId, groupID, result: true,
+  };
 }
 
 function createGroup(data) {
