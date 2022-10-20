@@ -83,8 +83,6 @@ function getEmailFromId(id) {
 
     const queryResult = db.query(query, [id]);
 
-    console.log(queryResult);
-
     if (!queryResult[0]) {
       return false;
     }

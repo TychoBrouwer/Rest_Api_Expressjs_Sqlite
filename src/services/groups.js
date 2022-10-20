@@ -108,6 +108,12 @@ function addToGroup(data) {
 
   const idToAdd = getIdFromEmail(emailToAdd);
 
+  if (usersGroup.includes(idToAdd)) {
+    return {
+      userID, groupID, result: true, already: true,
+    };
+  }
+
   if (!idToAdd) {
     return {
       userID, emailToAdd, groupID, result: false,
