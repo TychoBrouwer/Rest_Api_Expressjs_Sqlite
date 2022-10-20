@@ -41,7 +41,13 @@ function getUsers(data) {
 
     for (let i = 0; i < queryResult.length; i += 1) {
       queryResult[i].Email = getEmailFromId(queryResult[i].UserID);
+
+      console.log(queryResult[i]);
+      console.log(queryResult[i].UserID);
+      console.log(queryResult[i].Email);
     }
+
+    console.log(queryResult);
 
     return { data: queryResult, result: true };
   } catch (error) {
