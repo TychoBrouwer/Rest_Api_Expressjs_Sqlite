@@ -66,25 +66,6 @@ function checkUserGroup(data) {
   }
 }
 
-// function groupExists(groupID) {
-//   try {
-//     const query = `
-//       SELECT EXISTS(SELECT 1 FROM groups WHERE GroupID = ?)
-//       VALUES ( ? );
-//     `;
-
-//     const queryResult = db.run(query, [groupID]);
-
-//     if (!queryResult[0]) {
-//       return false;
-//     }
-
-//     return true;
-//   } catch (error) {
-//     return false;
-//   }
-// }
-
 function addToGroup(data) {
   const {
     userID, password, groupID, emailToAdd,

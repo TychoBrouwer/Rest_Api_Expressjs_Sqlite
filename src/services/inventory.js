@@ -8,6 +8,8 @@ const { authUser } = require('./sign-in');
 function getInventory(data) {
   const { userID, password, groupID } = sanitizeInput(data);
 
+  console.log(userID, password, groupID);
+
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
@@ -20,6 +22,8 @@ function getInventory(data) {
     if (groupID) {
       const checkGroup = checkUserGroup(userID, groupID);
 
+      console.log(checkGroup);
+
       if (!checkGroup.result) {
         return {
           userID, groupID, result: false,
@@ -28,6 +32,8 @@ function getInventory(data) {
 
       const query = 'SELECT Inventory FROM groups WHERE GroupID = ?';
       queryResult = db.query(query, [groupID]);
+
+      console.log(queryResult);
 
       if (!queryResult[0]) {
         return { userID, groupID, result: false };
@@ -57,13 +63,13 @@ function addToInventory(data) {
     userID, groupID, password, itemData,
   } = sanitizeInput(data);
 
-  const currentData = getInventory({ userID, password, groupID });
-
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
     return { userID, result: false };
   }
+
+  const currentData = getInventory({ userID, password, groupID });
 
   try {
     let queryResult;
