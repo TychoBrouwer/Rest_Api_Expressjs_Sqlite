@@ -3,7 +3,7 @@ const lz = require('lz-string');
 const db = require('../utils/users-db');
 const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
-const { getIdFromEmail } = require('./user');
+const { getIdFromEmail, getEmailFromId } = require('./user');
 
 function getGroups(data) {
   const { userID, password } = sanitizeInput(data);
@@ -39,9 +39,9 @@ function getUsers(data) {
 
     console.log(queryResult);
 
-    // for (let i = 0; i < queryResult) {
-
-    // }
+    for (let i = 0; i < queryResult.length; i += 1) {
+      queryResult[i].Email = getEmailFromId(queryResult[i].UserID);
+    }
 
     return { data: queryResult, result: true };
   } catch (error) {
