@@ -69,6 +69,8 @@ function getIdFromEmail(email) {
   try {
     const query = 'SELECT UserID FROM users_groups where Email = ?';
 
+    console.log(query, email);
+
     const queryResult = db.query(query, [email]);
 
     console.log(queryResult);
