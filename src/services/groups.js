@@ -37,15 +37,9 @@ function getUsers(data) {
     const query = 'SELECT * FROM users_groups where GroupID = ?';
     const queryResult = db.query(query, [groupID]);
 
-    console.log(queryResult);
-
     for (let i = 0; i < queryResult.length; i += 1) {
       queryResult[i].Email = getEmailFromId(queryResult[i].UserID);
-
-      console.log(queryResult[i].UserID);
     }
-
-    console.log(queryResult);
 
     return { data: queryResult, result: true };
   } catch (error) {
