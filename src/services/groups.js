@@ -90,19 +90,16 @@ function addToGroup(data) {
   }
 
   const usersGroupResult = getUsers({ userID, password, groupID });
-  let usersGroup = [];
 
-  if (usersGroupResult.result) {
-    usersGroup = usersGroupResult.data;
-
-    console.log(usersGroup);
-    console.log(usersGroup.length);
-    console.log(usersGroup.includes(userID));
+  if (!usersGroupResult.result) {
+    return { userID, groupID, result: false };
   }
 
-  // if (!usersGroup.result) {
-  return { userID, groupID, result: false };
-  // }
+  const usersGroup = usersGroupResult.data;
+
+  if (usersGroup.length !== 0 && !usersGroup.includes(userID)) {
+    return { userID, groupID, result: false };
+  }
 
   try {
     const query = `
