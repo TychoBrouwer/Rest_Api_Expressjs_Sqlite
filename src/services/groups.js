@@ -89,11 +89,16 @@ function addToGroup(data) {
     return { userID, groupID, result: false };
   }
 
-  const usersGroup = getUsers({ userID, password, groupID });
+  const usersGroupResult = getUsers({ userID, password, groupID });
+  let usersGroup = [];
 
-  console.log(usersGroup);
-  console.log(usersGroup.length);
-  console.log(usersGroup.includes(userID));
+  if (usersGroupResult.result) {
+    usersGroup = usersGroupResult.data;
+
+    console.log(usersGroup);
+    console.log(usersGroup.length);
+    console.log(usersGroup.includes(userID));
+  }
 
   // if (!usersGroup.result) {
   return { userID, groupID, result: false };
