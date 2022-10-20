@@ -98,6 +98,11 @@ function addToGroup(data) {
 
   const usersGroup = usersGroupResult.data;
 
+  console.log(userID);
+  console.log(usersGroup);
+  console.log(usersGroup.includes(userID));
+  console.log(!usersGroup.includes(userID));
+
   if (usersGroup.length !== 0 && !usersGroup.includes(userID)) {
     return { userID, groupID, result: false };
   }
