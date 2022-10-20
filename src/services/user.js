@@ -67,7 +67,7 @@ function updateUserDetails(data) {
 
 function getIdFromEmail(email) {
   try {
-    const query = 'SELECT UserID FROM users_groups where Email = ?';
+    const query = 'SELECT UserID FROM users where Email = ?';
 
     console.log(query, email);
 
