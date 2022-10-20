@@ -65,6 +65,23 @@ function updateUserDetails(data) {
   }
 }
 
+function getIdFromEmail(email) {
+  try {
+    const query = 'SELECT UserID FROM users_groups where Email = ?';
+
+    const queryResult = db.query(query, [email]);
+
+    if (queryResult.changes === 0) {
+      return false;
+    }
+
+    return queryResult;
+  } catch (error) {
+    return false;
+  }
+}
+
 module.exports = {
   updateUserDetails,
+  getIdFromEmail,
 };

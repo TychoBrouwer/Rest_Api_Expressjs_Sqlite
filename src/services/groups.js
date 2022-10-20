@@ -3,6 +3,7 @@ const lz = require('lz-string');
 const db = require('../utils/users-db');
 const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
+const { getIdFromEmail } = require('./user');
 
 function getGroups(data) {
   const { userID, password } = sanitizeInput(data);
@@ -80,7 +81,7 @@ function checkUserGroup(data) {
 
 function addToGroup(data) {
   const {
-    userID, password, groupID, toAddId,
+    userID, password, groupID, emailToAdd,
   } = sanitizeInput(data);
 
   const authResult = authUser({ userID, password });
@@ -101,27 +102,35 @@ function addToGroup(data) {
     return { userID, groupID, result: false };
   }
 
+  const idToAdd = getIdFromEmail(emailToAdd);
+
+  if (!idToAdd) {
+    return {
+      userID, emailToAdd, groupID, result: false,
+    };
+  }
+
   try {
     const query = `
       INSERT INTO users_groups (UserID, GroupID)
       VALUES ( ?, ? );
     `;
 
-    const queryResult = db.run(query, [toAddId, groupID]);
+    const queryResult = db.run(query, [idToAdd, groupID]);
 
     if (queryResult.changes === 0) {
       return {
-        userID, toAddId, groupID, result: false,
+        userID, emailToAdd, groupID, result: false,
       };
     }
   } catch (error) {
     return {
-      userID, toAddId, groupID, result: false,
+      userID, emailToAdd, groupID, result: false,
     };
   }
 
   return {
-    userID, toAddId, groupID, result: true,
+    userID, emailToAdd, groupID, result: true,
   };
 }
 
