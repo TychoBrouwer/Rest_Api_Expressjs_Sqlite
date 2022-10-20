@@ -37,6 +37,12 @@ function getUsers(data) {
     const query = 'SELECT * FROM users_groups where GroupID = ?';
     const queryResult = db.query(query, [groupID]);
 
+    console.log(queryResult);
+
+    // for (let i = 0; i < queryResult) {
+
+    // }
+
     return { data: queryResult, result: true };
   } catch (error) {
     return { userID, result: false };

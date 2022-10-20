@@ -77,7 +77,24 @@ function getIdFromEmail(email) {
   }
 }
 
+function getEmailFromId(id) {
+  try {
+    const query = 'SELECT Email FROM users where UserID = ?';
+
+    const queryResult = db.query(query, [id]);
+
+    if (!queryResult[0]) {
+      return false;
+    }
+
+    return queryResult[0].UserID;
+  } catch (error) {
+    return false;
+  }
+}
+
 module.exports = {
   updateUserDetails,
   getIdFromEmail,
+  getEmailFromId,
 };
