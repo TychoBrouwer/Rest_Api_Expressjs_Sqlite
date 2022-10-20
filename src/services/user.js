@@ -79,7 +79,7 @@ function getIdFromEmail(email) {
       return false;
     }
 
-    return queryResult;
+    return queryResult[0];
   } catch (error) {
     return false;
   }
