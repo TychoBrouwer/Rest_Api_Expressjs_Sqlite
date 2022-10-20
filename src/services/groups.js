@@ -95,8 +95,8 @@ function addToGroup(data) {
   console.log(usersGroup.length);
   console.log(usersGroup.includes(userID));
 
-  // if (!groupCheck.result) {
-  //   return { userID, groupID, result: false };
+  // if (!usersGroup.result) {
+  return { userID, groupID, result: false };
   // }
 
   try {
