@@ -89,11 +89,15 @@ function addToGroup(data) {
     return { userID, groupID, result: false };
   }
 
-  const groupCheck = checkUserGroup({ userID, groupID });
+  const usersGroup = getUsers({ userID, groupID });
 
-  if (!groupCheck.result) {
-    return { userID, groupID, result: false };
-  }
+  console.log(usersGroup);
+  console.log(usersGroup.length);
+  console.log(usersGroup.includes(userID));
+
+  // if (!groupCheck.result) {
+  //   return { userID, groupID, result: false };
+  // }
 
   try {
     const query = `
