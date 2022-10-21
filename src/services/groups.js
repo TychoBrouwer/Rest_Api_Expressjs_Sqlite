@@ -203,7 +203,7 @@ function removeFromGroup(data) {
     };
   }
 
-  if (userID === idToRemove) {
+  if (idToRemove !== getGroupOwner(groupID)) {
     return {
       userID, groupID, idToRemove, result: false,
     };
