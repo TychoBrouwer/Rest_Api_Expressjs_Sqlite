@@ -10,8 +10,6 @@ function getInventory(data) {
 
   const authResult = authUser({ userID, password });
 
-  console.log(authResult);
-
   if (!authResult.result) {
     return { userID, result: false };
   }
@@ -22,7 +20,7 @@ function getInventory(data) {
     if (groupID) {
       const checkGroup = checkUserGroup(userID, groupID);
 
-      console.log(checkGroup);
+      console.log(`checkGroup ${checkGroup}`);
 
       if (!checkGroup.result) {
         return {
@@ -33,7 +31,7 @@ function getInventory(data) {
       const query = 'SELECT Inventory FROM groups WHERE GroupID = ?';
       queryResult = db.query(query, [groupID]);
 
-      console.log(queryResult);
+      console.log(`queryResult ${queryResult}`);
 
       if (!queryResult[0]) {
         return { userID, groupID, result: false };

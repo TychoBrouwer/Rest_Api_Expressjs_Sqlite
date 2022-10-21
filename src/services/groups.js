@@ -18,8 +18,6 @@ function getGroups(data) {
     const query = 'SELECT * FROM users_groups where UserID = ?';
     const queryResult = db.query(query, [userID]);
 
-    console.log(queryResult);
-
     return { data: queryResult, result: true };
   } catch (error) {
     return { userID, result: false };
