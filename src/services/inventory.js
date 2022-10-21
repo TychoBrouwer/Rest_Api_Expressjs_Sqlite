@@ -8,9 +8,9 @@ const { authUser } = require('./sign-in');
 function getInventory(data) {
   const { userID, password, groupID } = sanitizeInput(data);
 
-  console.log(userID, password, groupID);
-
   const authResult = authUser({ userID, password });
+
+  console.log(authResult);
 
   if (!authResult.result) {
     return { userID, result: false };
