@@ -64,6 +64,21 @@ function checkUserGroup(data) {
   }
 }
 
+function checkUserIsOwner(userID, groupID) {
+  try {
+    const query = 'SELECT * FROM groups where UserID = ? AND GroupID = ?';
+    const queryResult = db.query(query, [userID, groupID]);
+
+    if (queryResult.length === 0) {
+      return { userID, groupID, result: false };
+    }
+
+    return { userID, groupID, result: true };
+  } catch (error) {
+    return { userID, groupID, result: false };
+  }
+}
+
 function addToGroup(data) {
   const {
     userID, password, groupID, emailToAdd,
@@ -156,11 +171,61 @@ function createGroup(data) {
   }
 }
 
+function removeFromGroup(data) {
+  const {
+    userID, password, groupID, idToRemove,
+  } = sanitizeInput(data);
+
+  const authResult = authUser({ userID, password });
+
+  if (!authResult.result) {
+    return {
+      userID, groupID, idToRemove, result: false,
+    };
+  }
+
+  const checkUser = checkUserIsOwner(userID, groupID);
+
+  if (!checkUser.result) {
+    return {
+      userID, groupID, idToRemove, result: false,
+    };
+  }
+
+  if (userID === idToRemove) {
+    return {
+      userID, groupID, idToRemove, result: false,
+    };
+  }
+
+  try {
+    const query = 'DELETE FROM users_groups WHERE GroupID = ? AND UserID = ?';
+
+    const queryResult = db.run(query, [groupID, idToRemove]);
+
+    if (queryResult.changes === 0) {
+      return {
+        userID, groupID, idToRemove, result: false,
+      };
+    }
+
+    return {
+      userID, groupID, idToRemove, result: true,
+    };
+  } catch (error) {
+    console.log(error);
+
+    return {
+      userID, groupID, idToRemove, result: false,
+    };
+  }
+}
+
 module.exports = {
   getGroups,
   getUsers,
   checkUserGroup,
-  // groupExists,
+  removeFromGroup,
   addToGroup,
   createGroup,
 };
