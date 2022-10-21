@@ -54,6 +54,7 @@ function checkUserGroup(data) {
     const query = 'SELECT * FROM users_groups where UserID = ? AND GroupID = ?';
     const queryResult = db.query(query, [userID, groupID]);
 
+    console.log(userID, groupID);
     console.log(queryResult);
 
     if (queryResult.length === 0) {
