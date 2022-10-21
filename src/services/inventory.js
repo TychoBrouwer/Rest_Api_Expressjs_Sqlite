@@ -59,15 +59,11 @@ function addToInventory(data) {
 
   const authResult = authUser({ userID, password });
 
-  console.log(authResult);
-
   if (!authResult.result) {
     return { userID, result: false };
   }
 
   const currentData = getInventory({ userID, password, groupID });
-
-  console.log(currentData);
 
   try {
     let queryResult;
@@ -95,8 +91,6 @@ function addToInventory(data) {
         WHERE userID = ?
       `;
     }
-
-    console.log(query);
 
     if (currentData.result && currentData.inventory) {
       newInventory = currentData.inventory;
@@ -165,7 +159,7 @@ function removeFromInventory(data) {
     let query;
 
     if (groupID) {
-      const checkGroup = checkUserGroup(userID, groupID);
+      const checkGroup = checkUserGroup({ userID, groupID });
 
       if (!checkGroup.result) {
         return {
