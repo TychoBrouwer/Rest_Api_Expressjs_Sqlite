@@ -40,6 +40,8 @@ const removeItem = require('./routes/remove-item');
 const getInventory = require('./routes/get-inventory');
 const addToGroup = require('./routes/add-to-group');
 const getGroups = require('./routes/get-groups');
+const getGroupUsers = require('./routes/get-group-users');
+
 const createGroup = require('./routes/create-group');
 const updateUser = require('./routes/update-user-details');
 
@@ -56,6 +58,7 @@ app.use('/remove-item', removeItem);
 app.use('/get-inventory', getInventory);
 app.use('/add-to-group', addToGroup);
 app.use('/get-groups', getGroups);
+app.use('/get-group-users', getGroupUsers);
 app.use('/create-group', createGroup);
 app.use('/update-user', updateUser);
 

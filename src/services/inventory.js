@@ -8,6 +8,8 @@ const { authUser } = require('./sign-in');
 function getInventory(data) {
   const { userID, password, groupID } = sanitizeInput(data);
 
+  console.log(userID, password, groupID);
+
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
@@ -61,13 +63,13 @@ function addToInventory(data) {
     userID, groupID, password, itemData,
   } = sanitizeInput(data);
 
-  const currentData = getInventory({ userID, password, groupID });
-
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
     return { userID, result: false };
   }
+
+  const currentData = getInventory({ userID, password, groupID });
 
   try {
     let queryResult;

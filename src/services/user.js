@@ -21,12 +21,8 @@ function updateUserDetails(data) {
     toUpdate.Password = bcrypt.hashSync(toUpdate.Password, serverSalt);
   }
 
-  console.log(`hashed: ${toUpdate.Password}`);
-
   try {
     const valuesToUpdate = Object.keys(toUpdate);
-
-    console.log(`value to update: ${valuesToUpdate}`);
 
     let query = `
       UPDATE users
@@ -65,6 +61,40 @@ function updateUserDetails(data) {
   }
 }
 
+function getIdFromEmail(email) {
+  try {
+    const query = 'SELECT UserID FROM users where Email = ?';
+
+    const queryResult = db.query(query, [email]);
+
+    if (!queryResult[0]) {
+      return false;
+    }
+
+    return queryResult[0].UserID;
+  } catch (error) {
+    return false;
+  }
+}
+
+function getEmailFromId(id) {
+  try {
+    const query = 'SELECT Email FROM users where UserID = ?';
+
+    const queryResult = db.query(query, [id]);
+
+    if (!queryResult[0]) {
+      return false;
+    }
+
+    return queryResult[0].Email;
+  } catch (error) {
+    return false;
+  }
+}
+
 module.exports = {
   updateUserDetails,
+  getIdFromEmail,
+  getEmailFromId,
 };
