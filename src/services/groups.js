@@ -5,6 +5,17 @@ const sanitizeInput = require('../utils/sanitize-input');
 const { authUser } = require('./sign-in');
 const { getIdFromEmail, getEmailFromId } = require('./user');
 
+function getGroupOwner(groupID) {
+  try {
+    const query = 'SELECT UserID FROM groups where GroupID = ?';
+    const queryResult = db.query(query, [groupID]);
+
+    return queryResult[0].UserID;
+  } catch (error) {
+    return false;
+  }
+}
+
 function getGroups(data) {
   const { userID, password } = sanitizeInput(data);
 
@@ -41,7 +52,7 @@ function getUsers(data) {
       queryResult[i].Email = getEmailFromId(queryResult[i].UserID);
     }
 
-    return { data: queryResult, result: true };
+    return { data: queryResult, groupOwner: getGroupOwner(groupID), result: true };
   } catch (error) {
     return { userID, result: false };
   }
