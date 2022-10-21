@@ -18,7 +18,9 @@ function getInventory(data) {
     let queryResult;
 
     if (groupID) {
-      const checkGroup = checkUserGroup(userID, groupID);
+      console.log(data);
+
+      const checkGroup = checkUserGroup({ userID, groupID });
 
       if (!checkGroup.result) {
         return {
