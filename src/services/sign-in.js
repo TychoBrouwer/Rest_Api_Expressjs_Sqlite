@@ -10,12 +10,15 @@ function authUser(data) {
 
   let queryResult;
 
+  console.log(email, userID, password);
+
   try {
     const serverSalt = salts.getSalt(false, email || userID);
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
     const query = 'SELECT * FROM users WHERE (Email = ? OR UserID = ?) AND Password = ?';
     queryResult = db.query(query, [email, userID, passwordHash]);
+    console.log(queryResult);
 
     if (!queryResult[0]) {
       return { email, userID, result: false };
@@ -27,6 +30,7 @@ function authUser(data) {
 
     return { email, userID, result: false };
   }
+
 
   return {
     email: queryResult[0].Email,
