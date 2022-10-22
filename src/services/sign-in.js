@@ -32,6 +32,7 @@ function authUser(data) {
     firstName: queryResult[0].FirstName,
     lastName: queryResult[0].LastName,
     inventory: JSON.parse(lz.decompressFromUTF16(queryResult[0].Inventory)),
+    grocery: JSON.parse(lz.decompressFromUTF16(queryResult[0].Grocery)),
     result: true,
   };
 }
