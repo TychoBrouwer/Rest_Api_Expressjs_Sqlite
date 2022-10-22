@@ -6,13 +6,17 @@ const { checkUserGroup } = require('./groups');
 const { authUser } = require('./sign-in');
 
 function getInventory(data) {
-  const { userID, password, groupID } = sanitizeInput(data);
+  const {
+    userID, password, groupID, isGrocery,
+  } = sanitizeInput(data);
 
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
     return { userID, result: false };
   }
+
+  const destination = isGrocery ? 'GroceryList' : 'Inventory';
 
   try {
     let queryResult;
@@ -26,14 +30,14 @@ function getInventory(data) {
         };
       }
 
-      const query = 'SELECT Inventory FROM groups WHERE GroupID = ?';
+      const query = `SELECT ${destination} FROM groups WHERE GroupID = ?`;
       queryResult = db.query(query, [groupID]);
 
       if (!queryResult[0]) {
         return { userID, groupID, result: false };
       }
     } else {
-      const query = 'SELECT Inventory FROM users WHERE UserID = ?';
+      const query = `SELECT ${destination} FROM users WHERE UserID = ?`;
       queryResult = db.query(query, [userID]);
 
       if (!queryResult[0]) {
@@ -54,7 +58,7 @@ function getInventory(data) {
 
 function addToInventory(data) {
   const {
-    userID, groupID, password, itemData,
+    userID, groupID, password, isGrocery, itemData,
   } = sanitizeInput(data);
 
   const authResult = authUser({ userID, password });
@@ -70,6 +74,8 @@ function addToInventory(data) {
     let newInventory = [];
     let query;
 
+    const destination = isGrocery ? 'GroceryList' : 'Inventory';
+
     if (groupID) {
       const checkGroup = checkUserGroup({ userID, groupID });
 
@@ -81,13 +87,13 @@ function addToInventory(data) {
 
       query = `
         UPDATE groups
-        SET Inventory = ?
+        SET ${destination} = ?
         WHERE groupID = ?
       `;
     } else {
       query = `
         UPDATE users
-        SET Inventory = ?
+        SET ${destination} = ?
         WHERE userID = ?
       `;
     }
@@ -142,7 +148,7 @@ function addToInventory(data) {
 
 function removeFromInventory(data) {
   const {
-    userID, groupID, password, itemID,
+    userID, groupID, password, isGrocery, itemID,
   } = sanitizeInput(data);
 
   const currentData = getInventory({ userID, password, groupID });
@@ -152,6 +158,8 @@ function removeFromInventory(data) {
   if (!authResult.result) {
     return { userID, result: false };
   }
+
+  const destination = isGrocery ? 'GroceryList' : 'Inventory';
 
   try {
     let queryResult;
@@ -169,13 +177,13 @@ function removeFromInventory(data) {
 
       query = `
         UPDATE groups
-        SET Inventory = ?
+        SET ${destination} = ?
         WHERE groupID = ?
       `;
     } else {
       query = `
         UPDATE users
-        SET Inventory = ?
+        SET ${destination} = ?
         WHERE userID = ?
       `;
     }
