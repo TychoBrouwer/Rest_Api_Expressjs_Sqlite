@@ -161,12 +161,13 @@ function createGroup(data) {
   }
 
   const query = `
-    INSERT INTO groups (UserID, Inventory)
-    VALUES ( ?, ? );
+    INSERT INTO groups (UserID, Inventory, GroceryList)
+    VALUES ( ?, ?, ? );
   `;
 
   try {
-    const queryResult = db.run(query, [userID, lz.compressToUTF16('[]')]);
+    const emptyCompressedArray = lz.compressToUTF16('[]');
+    const queryResult = db.run(query, [userID, emptyCompressedArray, emptyCompressedArray]);
 
     if (queryResult.changes === 0) {
       return { groupID: null, result: false };

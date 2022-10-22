@@ -35,15 +35,17 @@ function createUser(data) {
     const passwordHash = bcrypt.hashSync(password, serverSalt);
 
     const query = `
-      INSERT INTO users (Email, Password, ClientSalt, ServerSalt, Inventory)
-      VALUES ( ?, ?, ?, ?, ? );
+      INSERT INTO users (Email, Password, ClientSalt, ServerSalt, Inventory, GroceryList)
+      VALUES ( ?, ?, ?, ?, ?, ? );
     `;
 
     delete app.locals[email];
 
     try {
+      const emptyCompressedArray = lz.compressToUTF16('[]');
+
       const queryResult = db.run(query, [
-        email, passwordHash, clientSalt, serverSalt, lz.compressToUTF16('[]'),
+        email, passwordHash, clientSalt, serverSalt, emptyCompressedArray, emptyCompressedArray,
       ]);
 
       if (queryResult.changes === 0) {
