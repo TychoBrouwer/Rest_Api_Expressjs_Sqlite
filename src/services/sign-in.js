@@ -23,6 +23,8 @@ function authUser(data) {
 
     // console.log(`new user sign-in: ${email}, user_id: ${queryResult[0].UserID}`);
   } catch (error) {
+    console.log(error);
+
     return { email, userID, result: false };
   }
 
