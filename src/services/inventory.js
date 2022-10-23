@@ -34,7 +34,7 @@ function getInventory(data) {
 
       const query = `SELECT ${destination} FROM groups WHERE GroupID = ?`;
       queryResult = db.query(query, [groupID]);
-      console.log(queryResult);
+      console.log(queryResult[0]);
 
       if (!queryResult[0]) {
         return { userID, groupID, result: false };
@@ -47,6 +47,8 @@ function getInventory(data) {
         return { userID, groupID, result: false };
       }
     }
+
+    console.log('success');
 
     return {
       userID,
