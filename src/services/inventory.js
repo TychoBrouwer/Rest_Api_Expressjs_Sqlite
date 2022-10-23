@@ -67,7 +67,9 @@ function addToInventory(data) {
     return { userID, result: false };
   }
 
-  const currentData = getInventory({ userID, password, groupID });
+  const currentData = getInventory({
+    userID, password, groupID, isGrocery,
+  });
 
   try {
     let queryResult;
@@ -151,7 +153,9 @@ function removeFromInventory(data) {
     userID, groupID, password, isGrocery, itemID,
   } = sanitizeInput(data);
 
-  const currentData = getInventory({ userID, password, groupID });
+  const currentData = getInventory({
+    userID, password, groupID, isGrocery,
+  });
 
   const authResult = authUser({ userID, password });
 
