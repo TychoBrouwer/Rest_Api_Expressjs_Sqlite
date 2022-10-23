@@ -24,8 +24,6 @@ function getInventory(data) {
     if (groupID) {
       const checkGroup = checkUserGroup({ userID, groupID });
 
-      console.log(checkGroup);
-
       if (!checkGroup.result) {
         return {
           userID, groupID, result: false,
@@ -34,7 +32,6 @@ function getInventory(data) {
 
       const query = `SELECT ${destination} FROM groups WHERE GroupID = ?`;
       queryResult = db.query(query, [groupID]);
-      console.log(queryResult[0]);
 
       if (!queryResult[0]) {
         return { userID, groupID, result: false };
@@ -48,12 +45,10 @@ function getInventory(data) {
       }
     }
 
-    console.log('success');
-
     return {
       userID,
       groupID,
-      inventory: JSON.parse(lz.decompressFromUTF16(queryResult[0].Inventory)),
+      inventory: JSON.parse(lz.decompressFromUTF16(queryResult[0][destination])),
       result: true,
     };
   } catch (error) {
