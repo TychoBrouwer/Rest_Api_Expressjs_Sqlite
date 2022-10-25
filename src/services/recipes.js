@@ -6,7 +6,6 @@ function searchIngredientRecipe({ ingredients, limit }) {
     FROM recipes_ingredients
     JOIN ingredients ON recipes_ingredients.fk_ingredient = ingredients.ingredient_ID
     JOIN recipes ON recipes_ingredients.fk_recipe = recipes.recipe_ID
-    LIMIT ?
     WHERE 
   `;
   console.log(ingredients);
@@ -16,12 +15,14 @@ function searchIngredientRecipe({ ingredients, limit }) {
     query += 'ingredients.ingredient_name = ? ';
   }
 
+  query += ' LIMIT ?';
+
   console.log(query);
 
   let queryResult;
 
   try {
-    queryResult = db.query(query, [limit, ...ingredients]);
+    queryResult = db.query(query, [...ingredients, limit]);
     console.log(queryResult);
 
     if (!queryResult[0]) {
