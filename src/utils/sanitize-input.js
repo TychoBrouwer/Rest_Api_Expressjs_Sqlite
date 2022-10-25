@@ -18,7 +18,9 @@ const sanitizeInput = (data) => {
         }
       });
     } else if (typeof data[key] === 'object') {
+      console.log(data[key]);
       Object.keys(data).forEach((itemKey) => {
+        console.log('item: ' + data[key][itemKey]);
         if (typeof data[key][itemKey] === 'string') {
           returnObj[key][itemKey] = data[key][itemKey].trim().toLowerCase();
         } else {
