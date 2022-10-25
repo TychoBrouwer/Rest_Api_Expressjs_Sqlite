@@ -45,9 +45,11 @@ function getBarCode(data) {
     const query = 'SELECT * FROM barcodes where Code = ?';
     const queryResult = db.query(query, [code]);
 
-    console.log(queryResult);
+    if (queryResult[0]) {
+      return { code, data: queryResult[0], result: true };
+    }
 
-    return { code, data: queryResult, result: true };
+    return { code, result: false };
   } catch (err) {
     console.log(err);
 
