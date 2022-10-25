@@ -66,7 +66,7 @@ app.use('/get-group-users', getGroupUsers);
 app.use('/create-group', createGroup);
 app.use('/update-user', updateUser);
 app.use('/search-ingredient-recipes', searchIngredientRecipes);
-// app.use('/add-bar-code', addBarCode);
+app.use('/add-bar-code', addBarCode);
 // app.use('/get-bar-code', getBarCode);
 
 app.use((req, res) => {
