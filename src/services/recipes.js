@@ -10,7 +10,7 @@ function searchIngredientRecipe({ ingredients, limit }) {
   `;
   console.log(ingredients);
 
-  for (let i = 0; i < Math.max(ingredients.length, limit); i += 1) {
+  for (let i = 0; i < Math.min(ingredients.length, limit); i += 1) {
     console.log(ingredients.length);
     query += 'ingredients.ingredient_name = ? ';
   }
