@@ -2,6 +2,8 @@ const db = require('../utils/recipes-db');
 const sanitizeInput = require('../utils/sanitize-input');
 
 function searchIngredientRecipe(data) {
+  console.log(data);
+
   const {
     ingredients, limit,
   } = sanitizeInput(data);
