@@ -44,6 +44,7 @@ const getGroups = require('./routes/get-groups');
 const getGroupUsers = require('./routes/get-group-users');
 const createGroup = require('./routes/create-group');
 const updateUser = require('./routes/update-user-details');
+const searchIngredientRecipes = require('./routes/search-ingredient-recipes');
 
 app.get('/', (req, res) => {
   res.json({ message: 'alive' });
@@ -62,6 +63,7 @@ app.use('/get-groups', getGroups);
 app.use('/get-group-users', getGroupUsers);
 app.use('/create-group', createGroup);
 app.use('/update-user', updateUser);
+app.use('/search-ingredient-recipes', searchIngredientRecipes);
 
 app.use((req, res) => {
   res.status(404).send("sorry can't find that!");
