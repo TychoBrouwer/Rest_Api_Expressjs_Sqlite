@@ -81,35 +81,21 @@ data11 = {
   'limit': 10,
 }
 
-# x1 = requests.post(url1, json = data1)
-# print(x1.text)
+url12 = 'http://192.168.178.142:3000/search-ingredient-recipes'
+data12 = {
+  'ingredients': [
+    'zout',
+  ],
+  'limit': 10,
+}
 
-# x2 = requests.post(url2, json = data2)
-# print(x2.text)
-
-# x3 = requests.post(url3, json = data3)
-# print(x3.text)
-
-# x4 = requests.post(url4, json = data4)
-# print(x4.text)
-
-# x5 = requests.post(url5, json = data5)
-# print(x5.text)
-
-# x6 = requests.post(url6, json = data6)
-# print(x6.text)
-
-# x7 = requests.post(url7, json = data7)
-# print(x7.text)
-
-# x8 = requests.post(url8, json = data8)
-# print(x8.text)
-
-# x9 = requests.post(url9, json = data9)
-# print(x9.text)
-
-# x10 = requests.post(url10, json = data10)
-# print(x10.text)
+url13 = 'http://192.168.178.142:3000/search-ingredient-recipes'
+data13 = {
+  'ingredients': [
+    'zout',
+  ],
+  'limit': 10,
+}
 
 x11 = requests.post(url11, json = data11)
 print(x11.text)
