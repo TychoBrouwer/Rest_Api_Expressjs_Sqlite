@@ -19,7 +19,13 @@ const sanitizeInput = (data) => {
       });
     } else if (typeof data[key] === 'object') {
       console.log(data[key]);
-      console.log(Object.keys(data[key]).forEach((item) => console.log(item)));
+      console.log(Object.keys(data[key]).forEach((itemKey) => {
+        if (typeof data[key][itemKey] === 'string') {
+          console.log(data[key][itemKey].trim().toLowerCase());
+        } else {
+          console.log(data[key][itemKey]);
+        }
+      }));
       Object.keys(data[key]).forEach((itemKey) => {
         console.log('item: ' + itemKey);
         if (typeof data[key][itemKey] === 'string') {
