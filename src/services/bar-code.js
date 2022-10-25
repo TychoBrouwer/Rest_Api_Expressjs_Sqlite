@@ -24,6 +24,8 @@ function addBarCode(data) {
       };
     }
   } catch (error) {
+    console.log(error);
+
     return {
       code, result: false,
     };
@@ -47,6 +49,8 @@ function getBarCode(data) {
 
     return { code, data: queryResult, result: true };
   } catch (err) {
+    console.log(err);
+
     return { code, result: false };
   }
 }
