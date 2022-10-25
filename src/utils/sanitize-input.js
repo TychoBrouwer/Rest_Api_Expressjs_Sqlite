@@ -8,10 +8,22 @@ const sanitizeInput = (data) => {
       } else {
         returnObj[key] = data[key].trim().toLowerCase();
       }
-    } else if (typeof data[key] === 'object') {
+    } else if (data[key] instanceof Array) {
       returnObj[key] = [];
       data[key].forEach((item) => {
-        returnObj[key].push(item.trim().toLowerCase());
+        if (typeof item === 'string') {
+          returnObj[key].push(item.trim().toLowerCase());
+        } else {
+          returnObj[key].push(item);
+        }
+      });
+    } else if (typeof data[key] === 'object') {
+      Object.keys(data).forEach((itemKey) => {
+        if (typeof data[key][itemKey] === 'string') {
+          returnObj[key][itemKey] = data[key][itemKey].trim().toLowerCase();
+        } else {
+          returnObj[key][itemKey] = data[key][itemKey];
+        }
       });
     } else {
       returnObj[key] = data[key];
