@@ -6,6 +6,8 @@ function addBarCode(data) {
     code, name, quantity, quantityType,
   } = sanitizeInput(data);
 
+  console.log(code, name, quantity, quantityType);
+
   try {
     const query = `
       INSERT INTO barcodes (Name, Quantity, QuantityType)
@@ -13,6 +15,8 @@ function addBarCode(data) {
     `;
 
     const queryResult = db.run(query, [name, quantity, quantityType]);
+
+    console.log(queryResult);
 
     if (queryResult.changes === 0) {
       return {
@@ -32,6 +36,8 @@ function addBarCode(data) {
 
 function getBarCode(data) {
   const { code } = sanitizeInput(data);
+
+  console.log(code);
 
   try {
     const query = 'SELECT * FROM barcodes where Code = ?';
