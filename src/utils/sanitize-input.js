@@ -8,6 +8,10 @@ const sanitizeInput = (data) => {
       } else {
         returnObj[key] = data[key].trim().toLowerCase();
       }
+    } else if (typeof data[key] === 'object') {
+      data[key].forEach((item, index) => {
+        returnObj[key][index] = item.trim().toLowerCase();
+      });
     } else {
       returnObj[key] = data[key];
     }

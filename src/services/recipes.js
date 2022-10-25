@@ -1,6 +1,11 @@
 const db = require('../utils/recipes-db');
+const sanitizeInput = require('../utils/sanitize-input');
 
-function searchIngredientRecipe({ ingredients, limit }) {
+function searchIngredientRecipe(data) {
+  const {
+    ingredients, limit,
+  } = sanitizeInput(data);
+
   let query = `
     SELECT *
     FROM recipes_ingredients
@@ -11,19 +16,15 @@ function searchIngredientRecipe({ ingredients, limit }) {
   console.log(ingredients);
 
   for (let i = 0; i < ingredients.length; i += 1) {
-    console.log(ingredients.length);
     query += 'ingredients.ingredient_name = ? ';
   }
 
   query += ' LIMIT ?';
 
-  console.log(query);
-
   let queryResult;
 
   try {
     queryResult = db.query(query, [...ingredients, limit]);
-    console.log(queryResult);
 
     if (!queryResult[0]) {
       return [];
