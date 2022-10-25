@@ -1,6 +1,6 @@
 const db = require('../utils/recipes-db');
 
-function searchIngredientRecipe(ingredients, limit) {
+function searchIngredientRecipe({ ingredients, limit }) {
   let query = `
     SELECT *
     FROM recipes_ingredients
@@ -8,8 +8,10 @@ function searchIngredientRecipe(ingredients, limit) {
     JOIN recipes On recipes_ingredients.fk_recipe = recipes.recipe_ID
     WHERE 
   `;
+  console.log(ingredients);
 
   for (let i = 0; i < Math.max(ingredients.length, limit); i += 1) {
+    console.log(ingredients.length);
     query += 'ingredients.ingredient_name = ? ';
   }
 
