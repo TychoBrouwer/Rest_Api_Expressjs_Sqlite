@@ -4,8 +4,8 @@ function searchIngredientRecipe({ ingredients, limit }) {
   let query = `
     SELECT *
     FROM recipes_ingredients
-    JOIN ingredients On recipes-ingredients.fk_ingredient = ingredients.ingredient_ID
-    JOIN recipes On recipes_ingredients.fk_recipe = recipes.recipe_ID
+    JOIN ingredients ON recipes_ingredients.fk_ingredient = ingredients.ingredient_ID
+    JOIN recipes ON recipes_ingredients.fk_recipe = recipes.recipe_ID
     WHERE 
   `;
   console.log(ingredients);
