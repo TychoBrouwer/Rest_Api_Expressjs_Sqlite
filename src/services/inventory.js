@@ -61,6 +61,8 @@ function addToInventory(data) {
     userID, groupID, password, isGrocery, itemData,
   } = sanitizeInput(data);
 
+  console.log(userID, groupID, password, isGrocery, itemData);
+
   const authResult = authUser({ userID, password });
 
   if (!authResult.result) {
