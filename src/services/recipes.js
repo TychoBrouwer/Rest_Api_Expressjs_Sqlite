@@ -13,10 +13,13 @@ function searchIngredientRecipe(ingredients, limit) {
     query += 'ingredients.ingredient_name = ? ';
   }
 
+  console.log(query);
+
   let queryResult;
 
   try {
     queryResult = db.query(query, ingredients);
+    console.log(queryResult);
 
     if (!queryResult[0]) {
       return [];
