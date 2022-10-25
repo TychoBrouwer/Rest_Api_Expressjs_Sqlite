@@ -41,7 +41,7 @@ function getBarCode(data) {
 
     return { code, data: queryResult, result: true };
   } catch (err) {
-    return { code, result: true };
+    return { code, result: false };
   }
 }
 
