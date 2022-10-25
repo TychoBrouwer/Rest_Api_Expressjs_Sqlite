@@ -57,6 +57,8 @@ function getInventory(data) {
 }
 
 function addToInventory(data) {
+  console.log(data);
+
   const {
     userID, groupID, password, isGrocery, itemData,
   } = sanitizeInput(data);
