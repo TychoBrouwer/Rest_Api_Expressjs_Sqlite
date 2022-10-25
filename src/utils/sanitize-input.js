@@ -17,25 +17,6 @@ const sanitizeInput = (data) => {
           returnObj[key].push(item);
         }
       });
-    } else if (typeof data[key] === 'object') {
-      console.log(data[key]);
-      Object.keys(data[key]).forEach((itemKey) => {
-        if (typeof data[key][itemKey] === 'string') {
-          console.log(data[key][itemKey].trim().toLowerCase());
-          returnObj[key][itemKey] = data[key][itemKey].trim().toLowerCase();
-        } else {
-          returnObj[key][itemKey] = data[key][itemKey];
-          console.log(data[key][itemKey]);
-        }
-      });
-      // Object.keys(data[key]).forEach((itemKey) => {
-      //   console.log('item: ' + itemKey);
-      //   if (typeof data[key][itemKey] === 'string') {
-      //     returnObj[key][itemKey] = data[key][itemKey].trim().toLowerCase();
-      //   } else {
-      //     returnObj[key][itemKey] = data[key][itemKey];
-      //   }
-      // });
     } else {
       returnObj[key] = data[key];
     }
