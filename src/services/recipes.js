@@ -2,8 +2,6 @@ const db = require('../utils/recipes-db');
 const sanitizeInput = require('../utils/sanitize-input');
 
 function searchIngredientRecipe(data) {
-  console.log(data);
-
   const {
     ingredients, limit,
   } = sanitizeInput(data);
@@ -15,7 +13,6 @@ function searchIngredientRecipe(data) {
     JOIN recipes ON recipes_ingredients.fk_recipe = recipes.recipe_ID
     WHERE 
   `;
-  console.log(ingredients);
 
   for (let i = 0; i < ingredients.length; i += 1) {
     query += 'ingredients.ingredient_name = ? ';
