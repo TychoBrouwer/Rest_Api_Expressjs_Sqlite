@@ -46,7 +46,7 @@ function initDatabase() {
     'Code' INTEGER PRIMARY KEY,
     'Name' VARCHAR(20) NOT NULL,
     'Quantity' INTEGER NOT NULL,
-    'QuantityType' VARCHAR(20) NOT NULL,
+    'QuantityType' VARCHAR(20) NOT NULL
   );`;
 
   db.run(barCodeTable, []);
