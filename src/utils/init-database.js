@@ -12,8 +12,7 @@ function initDatabase() {
       'AuthToken' VARCHAR(30),
       'FirstName' VARCHAR(20),
       'LastName' VARCHAR(20),
-      'Inventory' TEXT NOT NULL,
-      'GroceryList' TEXT NOT NULL
+      'Inventory' TEXT NOT NULL
     );`;
 
   db.run(userTable, []);
@@ -24,7 +23,6 @@ function initDatabase() {
     'GroupID' INTEGER PRIMARY KEY AUTOINCREMENT,
     'UserID' INTEGER NOT NULL,
     'Inventory' TEXT NOT NULL,
-    'GroceryList' TEXT NOT NULL,
     FOREIGN KEY(UserID) REFERENCES users(UserID)
   );`;
 
@@ -41,6 +39,17 @@ function initDatabase() {
   );`;
 
   db.run(userGroupTable, []);
+
+  const barCodeTable = `
+  CREATE TABLE IF NOT EXISTS
+  barcodes (
+    'Code' INTEGER PRIMARY KEY,
+    'Name' VARCHAR(20) NOT NULL,
+    'Quantity' INTEGER NOT NULL,
+    'QuantityType' VARCHAR(20) NOT NULL,
+  );`;
+
+  db.run(barCodeTable, []);
 
   console.log('databases initiated');
 }
