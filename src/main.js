@@ -45,6 +45,7 @@ const getGroupUsers = require('./routes/get-group-users');
 const createGroup = require('./routes/create-group');
 const updateUser = require('./routes/update-user-details');
 const searchIngredientRecipes = require('./routes/search-ingredient-recipes');
+const searchRecipes = require('./routes/search-recipes');
 const addBarCode = require('./routes/add-bar-code');
 const getBarCode = require('./routes/get-bar-code');
 
@@ -65,6 +66,7 @@ app.use('/get-groups', getGroups);
 app.use('/get-group-users', getGroupUsers);
 app.use('/create-group', createGroup);
 app.use('/update-user', updateUser);
+app.use('/search-recipes', searchRecipes);
 app.use('/search-ingredient-recipes', searchIngredientRecipes);
 app.use('/add-bar-code', addBarCode);
 app.use('/get-bar-code', getBarCode);
