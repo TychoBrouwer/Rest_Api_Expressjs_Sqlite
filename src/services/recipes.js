@@ -35,6 +35,37 @@ function searchIngredientRecipe(data) {
   return queryResult;
 }
 
+function searchRecipe(data) {
+  const {
+    name,
+  } = sanitizeInput(data);
+
+  const query = `
+    SELECT *
+    FROM recipes_ingredients
+    JOIN ingredients ON recipes_ingredients.fk_ingredient = ingredients.ingredient_ID
+    JOIN recipes ON recipes_ingredients.fk_recipe = recipes.recipe_ID
+    WHERE recipes.recipe_name = ?
+  `;
+
+  let queryResult;
+
+  try {
+    queryResult = db.query(query, [name]);
+
+    if (!queryResult[0]) {
+      return [];
+    }
+  } catch (err) {
+    console.log(err);
+
+    return [];
+  }
+
+  return queryResult;
+}
+
 module.exports = {
   searchIngredientRecipe,
+  searchRecipe,
 };
