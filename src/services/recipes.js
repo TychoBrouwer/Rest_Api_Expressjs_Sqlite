@@ -16,6 +16,10 @@ function searchIngredientRecipe(data) {
 
   for (let i = 0; i < ingredients.length; i += 1) {
     query += 'ingredients.ingredient_name = ? ';
+
+    if (i !== ingredients.length - 1) {
+      query += 'OR ';
+    }
   }
 
   query += ' LIMIT ?';
