@@ -9,10 +9,10 @@ function initDatabase() {
       'Password' VARCHAR(60) NOT NULL,
       'ClientSalt' VARCHAR(29) NOT NULL,
       'ServerSalt' VARCHAR(29) NOT NULL,
-      'AuthToken' VARCHAR(30),
       'FirstName' VARCHAR(20),
       'LastName' VARCHAR(20),
       'Inventory' TEXT NOT NULL
+      'GroceryList' TEXT NOT NULL
     );`;
 
   db.run(userTable, []);
@@ -23,6 +23,7 @@ function initDatabase() {
     'GroupID' INTEGER PRIMARY KEY AUTOINCREMENT,
     'UserID' INTEGER NOT NULL,
     'Inventory' TEXT NOT NULL,
+    'GroceryList' TEXT NOT NULL
     FOREIGN KEY(UserID) REFERENCES users(UserID)
   );`;
 

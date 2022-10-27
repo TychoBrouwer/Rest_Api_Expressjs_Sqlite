@@ -81,7 +81,7 @@ data11 = {
   'limit': 10,
 }
 
-url12 = 'http://131.155.234.132:3000/search-ingredient-recipes'
+url12 = 'http://192.168.178.142:3000/search-ingredient-recipes'
 data12 = {
   'ingredients': [
     'zout',
@@ -89,10 +89,10 @@ data12 = {
   'limit': 10,
 }
 
-url13 = 'http://131.155.234.132:3000/search-recipes'
+url13 = 'http://192.168.178.142:3000/search-recipes'
 data13 = {
   'name': 'vis'
 }
 
-x = requests.post(url12, json = data12)
+x = requests.post(url13, json = data13)
 print(x.text)
