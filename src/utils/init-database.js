@@ -11,7 +11,7 @@ function initDatabase() {
       'ServerSalt' VARCHAR(29) NOT NULL,
       'FirstName' VARCHAR(20),
       'LastName' VARCHAR(20),
-      'Inventory' TEXT NOT NULL
+      'Inventory' TEXT NOT NULL,
       'GroceryList' TEXT NOT NULL
     );`;
 
@@ -23,7 +23,7 @@ function initDatabase() {
     'GroupID' INTEGER PRIMARY KEY AUTOINCREMENT,
     'UserID' INTEGER NOT NULL,
     'Inventory' TEXT NOT NULL,
-    'GroceryList' TEXT NOT NULL
+    'GroceryList' TEXT NOT NULL,
     FOREIGN KEY(UserID) REFERENCES users(UserID)
   );`;
 
