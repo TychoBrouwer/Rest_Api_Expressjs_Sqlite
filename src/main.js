@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const express = require('express');
 const helmet = require('helmet');
-const speakeasy = require('speakeasy');
-const fs = require('fs');
+// const speakeasy = require('speakeasy');
+// const fs = require('fs');
 
 const initDatabase = require('./utils/init-database');
 
@@ -17,19 +17,20 @@ app.disable('x-powered-by');
 
 initDatabase();
 
-fs.readFile('api-secret.txt', (err, buf) => {
-  if (buf) {
-    app.locals.apiSecret = buf.toString();
+// Two step authentication code generator using speakeasy
+// fs.readFile('api-secret.txt', (err, buf) => {
+//   if (buf) {
+//     app.locals.apiSecret = buf.toString();
 
-    console.log(`api secret is "${app.locals.apiSecret}"`);
-  } else {
-    app.locals.apiSecret = speakeasy.generateSecret({ length: 20 }).base32;
+//     console.log(`api secret is "${app.locals.apiSecret}"`);
+//   } else {
+//     app.locals.apiSecret = speakeasy.generateSecret({ length: 20 }).base32;
 
-    fs.writeFile('api-secret.txt', app.locals.apiSecret, () => {
-      console.log(`new api secret is "${app.locals.apiSecret}"`);
-    });
-  }
-});
+//     fs.writeFile('api-secret.txt', app.locals.apiSecret, () => {
+//       console.log(`new api secret is "${app.locals.apiSecret}"`);
+//     });
+//   }
+// });
 
 const signIn = require('./routes/sign-in');
 const signUp = require('./routes/sign-up');
