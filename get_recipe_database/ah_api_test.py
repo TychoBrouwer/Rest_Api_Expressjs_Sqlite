@@ -64,13 +64,3 @@ for id in range(0, 237860):
 
     #      for i in preparation:
     #          preparation_str = preparation_str + i
-            
-       
-
-
-
-
-
-
-
-

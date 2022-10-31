@@ -144,36 +144,44 @@ def main():
               }
 
      response = requests.post(url, json=payload, headers=headers)
-     data = response.json()
-     print(data)
 
-     if data['data']['recipe'] != None:
-         recipe_id = data['data']['recipe']['id']
-         recipe_name = data['data']['recipe']['title']
-         recipe_serving = data['data']['recipe']['servings']['number']
-         recipe_preparation = data['data']['recipe']['preparation']['summary']
+     if (
+        response.status_code != 204 and
+        response.headers["content-type"].strip().startswith("application/json")
+     ):
+        try:
+            data = response.json()
+            print(data)
 
-         recipe_preparation_str = ''
+            if data['data']['recipe'] != None:
+                recipe_id = data['data']['recipe']['id']
+                recipe_name = data['data']['recipe']['title']
+                recipe_serving = data['data']['recipe']['servings']['number']
+                recipe_preparation = data['data']['recipe']['preparation']['summary']
 
-         for i in recipe_preparation:
-             recipe_preparation_str = recipe_preparation_str + i
-         
-         recipe = (recipe_id, recipe_name, recipe_serving, recipe_preparation_str)
+                recipe_preparation_str = ''
 
-         create_recipe(conn, recipe)
+                for i in recipe_preparation:
+                    recipe_preparation_str = recipe_preparation_str + i
+                
+                recipe = (recipe_id, recipe_name, recipe_serving, recipe_preparation_str)
 
-         for i in data['data']['recipe']['ingredients']:
+                create_recipe(conn, recipe)
 
-             ingredient_id = i['id']
-             ingredient_name = i['name']['singular']
-             ingredient_quantity = i['quantity']
-             ingredient_quantity_unit = i['quantityUnit']['singular']
+                for i in data['data']['recipe']['ingredients']:
 
-             ingredient = (ingredient_id, ingredient_name)
-             create_ingredient(conn, ingredient)
+                    ingredient_id = i['id']
+                    ingredient_name = i['name']['singular']
+                    ingredient_quantity = i['quantity']
+                    ingredient_quantity_unit = i['quantityUnit']['singular']
 
-             recipe_ingredient = (recipe_id, ingredient_id, ingredient_quantity, ingredient_quantity_unit)
-             create_recipe_ingredient(conn, recipe_ingredient)
+                    ingredient = (ingredient_id, ingredient_name)
+                    create_ingredient(conn, ingredient)
+
+                    recipe_ingredient = (recipe_id, ingredient_id, ingredient_quantity, ingredient_quantity_unit)
+                    create_recipe_ingredient(conn, recipe_ingredient)
+        except ValueError:
+            print(ValueError)
             
 if __name__ == '__main__':
     main()
